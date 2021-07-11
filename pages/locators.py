@@ -13,3 +13,8 @@ class AuthorizationPageLocators:
     PASSWORD = (By.CSS_SELECTOR, "#login_password")
     SUBMIT_BUTTON = (By.CSS_SELECTOR, "#submit-button")
     CABINET_HEAD = (By.CSS_SELECTOR, ".main-holder h1")
+
+
+class ProductPageLocators:
+    ICON_FAVORITE = (By.CSS_SELECTOR, ".c-checkbox .i-icon-fl-favorite .c-btn__text")
+    OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".header-icon__link .i-icon-fl-favorite")
