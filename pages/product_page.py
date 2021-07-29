@@ -6,6 +6,7 @@ from pages.mainpage import MainPage
 
 class ProductPage(MainPage):
     def add_favorite_product(self):
+        time.sleep(5)
         icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE)
         icon_add_to_favorite.click()
 
@@ -25,22 +26,35 @@ class ProductPage(MainPage):
         title_selected = self.browser.find_element(*ProductPageLocators.TITLE_SELECTED)
         assert title_selected.text == "Избранное", "Favorite list is empty"
 
-    def check_product_in_favorite_list(self):
+    def open_favorite_list(self):
         time.sleep(5)
         fav_product_icon = self.browser.find_element(*ProductPageLocators.OPEN_FAV_PRODUCTS)
         fav_product_icon.click()
+
+    def check_product_in_favorite_list(self):
+        time.sleep(5)
         name_product_in_fav = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT_IN_FAV)
         assert name_product_in_fav.text == "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)", \
-            "Your product is not favorite list"
+            "Product is not favorite list"
+        count_fav_products = self.browser.find_element(*ProductPageLocators.COUNT_PRODUCTS_IN_FAV)
+        assert int(count_fav_products.text) == 1, "Favorite list has more one product"
+
+    def check_two_products_in_favorite_list(self):
+        time.sleep(5)
+        count_fav_products = self.browser.find_element(*ProductPageLocators.COUNT_PRODUCTS_IN_FAV)
+        assert int(count_fav_products.text) == 2, "Favorite list has more one product"
+        product_names = [
+            "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
+            "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
+        ]
+        fav_list_items = self.browser.find_elements(*ProductPageLocators.NAME_PRODUCT_IN_FAV)
+        assert len(fav_list_items) == 2, "Favorite list has items not equals 2"
+        assert fav_list_items[0].text == product_names[0], "Wrong favorite product name"
+        assert fav_list_items[1].text == product_names[1], "Wrong favorite product name"
 
     def delete_product_from_favorite_list(self):
         time.sleep(5)
         fav_product_icon = self.browser.find_element(*ProductPageLocators.OPEN_FAV_PRODUCTS)
         fav_product_icon.click()
-        delete_product_from_favorite_list_from_fav_product_button = self.browser.find_element(*ProductPageLocators.delete_product_from_favorite_list_FROM_FAV_PRODUCT)
-        delete_product_from_favorite_list_from_fav_product_button.click()
-
-    def check_delete_product_from_favorite_list(self):
-        text_after_delete = self.browser.find_element(*ProductPageLocators.TEXT_AFTER_DELETE)
-        assert text_after_delete.text == "Все товары были убраны из вашего списка «Избранное»", \
-            "Your product is favorite"
+        delete_fav_product_button = self.browser.find_element(*ProductPageLocators.DELETE_FROM_FAV_PRODUCT)
+        delete_fav_product_button.click()

@@ -1,3 +1,5 @@
+import time
+
 from pages.locators import MainPageLocators
 
 
@@ -24,3 +26,7 @@ class MainPage:
     def check_location_is_kaliningrad(self):
         actual_city = self.browser.find_element(*MainPageLocators.LOCATION)
         assert actual_city.text == "Калининград", "City is not corrected"
+
+    def close_ad(self):
+        time.sleep(5)
+        self.browser.execute_script("$('%s').click()" % MainPageLocators.CLOSE_AD[1])

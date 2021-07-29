@@ -5,6 +5,7 @@ class MainPageLocators:
     LOCATION = (By.CSS_SELECTOR, ".header_fixed .header-top-line__link-text")
     CITY_INPUT = (By.CSS_SELECTOR, "#region-selection-form-city-input")
     GIVEN_CITY = (By.CSS_SELECTOR, ".city-selection-popup-results a")
+    CLOSE_AD = (By.CSS_SELECTOR, ".flocktory-widget-overlay")
 
 
 class AuthorizationPageLocators:
@@ -20,7 +21,7 @@ class ProductPageLocators:
     FAVORITE_ICON = (By.CSS_SELECTOR, ".header-icon__icon .wishlist-amount")
     OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".header-icon .i-icon-fl-favorite")
     TITLE_SELECTED = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-title")
-    NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-item .wishlist-product-title a")
-    NUMBER_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
+    NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-item .wishlist-product-title a")
+    COUNT_PRODUCTS_IN_FAV = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
     DELETE_FROM_FAV_PRODUCT = (By.CSS_SELECTOR, "#wishlist-action-area-0 .wishlist-action-links .wishlist-ico-action")
-    TEXT_AFTER_DELETE = (By.CSS_SELECTOR, ".main-holder .page-container .c-notifications__messages")
+    TEXT_AFTER_DELETE = (By.CSS_SELECTOR, ".c-notifications .c-notifications__messages")
