@@ -6,7 +6,6 @@ from pages.mainpage import MainPage
 
 class ProductPage(MainPage):
     def add_favorite_product(self):
-        time.sleep(5)
         icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE)
         icon_add_to_favorite.click()
 
@@ -40,7 +39,6 @@ class ProductPage(MainPage):
         assert int(count_fav_products.text) == 1, "Favorite list has more one product"
 
     def check_two_products_in_favorite_list(self):
-        time.sleep(5)
         count_fav_products = self.browser.find_element(*ProductPageLocators.COUNT_PRODUCTS_IN_FAV)
         assert int(count_fav_products.text) == 2, "Favorite list has more one product"
         product_names = [
@@ -53,7 +51,6 @@ class ProductPage(MainPage):
         assert fav_list_items[1].text == product_names[1], "Wrong favorite product name"
 
     def delete_product_from_favorite_list(self):
-        time.sleep(5)
         fav_product_icon = self.browser.find_element(*ProductPageLocators.OPEN_FAV_PRODUCTS)
         fav_product_icon.click()
         delete_fav_product_button = self.browser.find_element(*ProductPageLocators.DELETE_FROM_FAV_PRODUCT)
