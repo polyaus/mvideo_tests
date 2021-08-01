@@ -3,8 +3,11 @@ from selenium import webdriver
 
 
 @pytest.fixture(scope="function")
-def browser(request):
-    browser = webdriver.Chrome()
+def browser():
+    chrome_options = webdriver.ChromeOptions()
+    prefs = {"profile.default_content_setting_values.notifications": 2}
+    chrome_options.add_experimental_option("prefs", prefs)
+    browser = webdriver.Chrome(chrome_options=chrome_options)
 
     yield browser
     browser.quit()

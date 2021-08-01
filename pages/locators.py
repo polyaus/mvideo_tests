@@ -5,7 +5,6 @@ class MainPageLocators:
     LOCATION = (By.CSS_SELECTOR, ".header_fixed .header-top-line__link-text")
     CITY_INPUT = (By.CSS_SELECTOR, "#region-selection-form-city-input")
     GIVEN_CITY = (By.CSS_SELECTOR, ".city-selection-popup-results a")
-    CLOSE_AD = (By.CSS_SELECTOR, ".flocktory-widget-overlay")
 
 
 class AuthorizationPageLocators:
