@@ -51,7 +51,17 @@ class ProductPage(MainPage):
         assert fav_list_items[1].text == product_names[1], "Wrong favorite product name"
 
     def delete_product_from_favorite_list(self):
-        fav_product_icon = self.browser.find_element(*ProductPageLocators.OPEN_FAV_PRODUCTS)
-        fav_product_icon.click()
         delete_fav_product_button = self.browser.find_element(*ProductPageLocators.DELETE_FROM_FAV_PRODUCT)
         delete_fav_product_button.click()
+
+    def delete_first_added_product_from_favorite_list(self):
+        time.sleep(5)
+        product_names = [
+            "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
+            "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
+        ]
+        delete_fav_product_buttons = self.browser.find_elements(*ProductPageLocators.DELETE_FROM_FAV_PRODUCT)
+        delete_fav_product_buttons[1].click()
+        fav_list_items = self.browser.find_elements(*ProductPageLocators.NAME_PRODUCT_IN_FAV)
+        assert len(fav_list_items) == 1, "Favorite list has items not equals 2"
+        assert fav_list_items[0].text == product_names[0], "Wrong favorite product name"
