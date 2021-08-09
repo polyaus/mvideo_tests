@@ -1,4 +1,7 @@
 import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 from pages.locators import ProductPageLocators
 from pages.mainpage import MainPage
@@ -10,7 +13,8 @@ class ProductPage(MainPage):
         icon_add_to_favorite.click()
 
     def in_favorite_list_one_product(self):
-        time.sleep(5)
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.element_to_be_clickable(ProductPageLocators.FAVORITE_ICON))
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
         assert int(favorite_icon.text) == 1, "Product is not added in favorite list"
 
