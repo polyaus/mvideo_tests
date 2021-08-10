@@ -23,9 +23,8 @@ class ProductPage(MainPage):
         assert favorite_icon.text == '', "Favorite list is not empty"
 
     def favorite_list_is_not_empty(self):
-        time.sleep(5)
-        fav_product_icon = self.browser.find_element(*ProductPageLocators.OPEN_FAV_PRODUCTS)
-        fav_product_icon.click()
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(ProductPageLocators.TITLE_SELECTED))
         title_selected = self.browser.find_element(*ProductPageLocators.TITLE_SELECTED)
         assert title_selected.text == "Избранное", "Favorite list is empty"
 

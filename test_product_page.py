@@ -21,6 +21,7 @@ def test_favorite_list_is_not_empty(browser, product_page_url):
     page.open()
     page.favorite_is_empty()
     page.add_favorite_product()
+    page.open_favorite_list()
     page.favorite_list_is_not_empty()
 
 
