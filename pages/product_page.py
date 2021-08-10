@@ -34,7 +34,8 @@ class ProductPage(MainPage):
         fav_product_icon.click()
 
     def check_product_in_favorite_list(self):
-        time.sleep(5)
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(ProductPageLocators.NAME_PRODUCT_IN_FAV))
         name_product_in_fav = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT_IN_FAV)
         assert name_product_in_fav.text == "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)", \
             "Product is not favorite list"
