@@ -59,7 +59,8 @@ class ProductPage(MainPage):
         delete_fav_product_button.click()
 
     def delete_first_added_product_from_favorite_list(self):
-        time.sleep(5)
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(ProductPageLocators.DELETE_FROM_FAV_PRODUCT))
         product_names = [
             "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
             "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
