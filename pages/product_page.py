@@ -1,7 +1,5 @@
-import time
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.locators import ProductPageLocators
 from pages.mainpage import MainPage
@@ -14,13 +12,12 @@ class ProductPage(MainPage):
 
     def in_favorite_list_one_product(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.element_to_be_clickable(ProductPageLocators.FAVORITE_ICON))
+        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
         assert int(favorite_icon.text) == 1, "Product is not added in favorite list"
 
     def favorite_is_empty(self):
-        favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
-        assert favorite_icon.text == '', "Favorite list is not empty"
+        assert self.is_not_element_present(*ProductPageLocators.FAVORITE_ICON), "Favorite list is not empty"
 
     def favorite_list_is_not_empty(self):
         wait = WebDriverWait(self.browser, 10)
@@ -29,7 +26,8 @@ class ProductPage(MainPage):
         assert title_selected.text == "Избранное", "Favorite list is empty"
 
     def open_favorite_list(self):
-        time.sleep(5)
+        wait = WebDriverWait(self.browser, 10)
+        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_EMPTY))
         fav_product_icon = self.browser.find_element(*ProductPageLocators.OPEN_FAV_PRODUCTS)
         fav_product_icon.click()
 
