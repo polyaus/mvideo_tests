@@ -17,8 +17,10 @@ class MainPage:
     def change_location_to_kaliningrad(self):
         locate = self.browser.find_element(*MainPageLocators.LOCATION)
         locate.click()
+
         entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT)
         entry_field.send_keys("Калининград")
+
         given_cities = self.browser.find_elements(*MainPageLocators.GIVEN_CITY)
         for given_city in given_cities:
             if given_city.text.startswith("Калининград,"):
@@ -32,13 +34,16 @@ class MainPage:
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
+
         except NoSuchElementException:
             return False
+
         return True
 
     def is_not_element_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+
         except TimeoutException:
             return True
 
@@ -50,7 +55,9 @@ class MainPage:
     def favorite_list_is_empty(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(MainPageLocators.TEXT_EMPTY_FAV_LIST))
+
         text_in_empty_favorite_list = self.browser.find_element(*MainPageLocators.TEXT_EMPTY_FAV_LIST)
         assert text_in_empty_favorite_list.text == 'В избранном пока ничего нет', "Favorite list is not empty!"
+
         amount_favorite_on_button = self.browser.find_element(*MainPageLocators.AMOUNT_WISHLIST)
         assert amount_favorite_on_button.text == '', "Favorite list is not empty, sorry"

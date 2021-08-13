@@ -13,6 +13,7 @@ class ProductPage(MainPage):
     def in_favorite_list_one_product(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
+
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
         assert int(favorite_icon.text) == 1, "Product is not added in favorite list"
 
@@ -22,27 +23,32 @@ class ProductPage(MainPage):
     def favorite_list_is_not_empty(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(ProductPageLocators.TITLE_SELECTED))
+
         title_selected = self.browser.find_element(*ProductPageLocators.TITLE_SELECTED)
         assert title_selected.text == "Избранное", "Favorite list is empty"
 
     def open_favorite_list(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_EMPTY))
+
         fav_product_icon = self.browser.find_element(*ProductPageLocators.OPEN_FAV_PRODUCTS)
         fav_product_icon.click()
 
     def check_product_in_favorite_list(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(ProductPageLocators.NAME_PRODUCT_IN_FAV))
+
         name_product_in_fav = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT_IN_FAV)
         assert name_product_in_fav.text == "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)", \
             "Product is not favorite list"
+
         count_fav_products = self.browser.find_element(*ProductPageLocators.COUNT_PRODUCTS_IN_FAV)
         assert int(count_fav_products.text) == 1, "Favorite list has more one product"
 
     def check_two_products_in_favorite_list(self):
         count_fav_products = self.browser.find_element(*ProductPageLocators.COUNT_PRODUCTS_IN_FAV)
         assert int(count_fav_products.text) == 2, "Favorite list has more one product"
+
         product_names = [
             "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
             "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
@@ -59,12 +65,14 @@ class ProductPage(MainPage):
     def delete_first_added_product_from_favorite_list(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(ProductPageLocators.DELETE_FROM_FAV_PRODUCT))
+
         product_names = [
             "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
             "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
         ]
         delete_fav_product_buttons = self.browser.find_elements(*ProductPageLocators.DELETE_FROM_FAV_PRODUCT)
         delete_fav_product_buttons[1].click()
+
         fav_list_items = self.browser.find_elements(*ProductPageLocators.NAME_PRODUCT_IN_FAV)
         assert len(fav_list_items) == 1, "Favorite list has items not equals 2"
         assert fav_list_items[0].text == product_names[0], "Wrong favorite product name"
