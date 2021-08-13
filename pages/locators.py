@@ -5,9 +5,12 @@ class MainPageLocators:
     LOCATION = (By.CSS_SELECTOR, ".header_fixed .header-top-line__link-text")
     CITY_INPUT = (By.CSS_SELECTOR, "#region-selection-form-city-input")
     GIVEN_CITY = (By.CSS_SELECTOR, ".city-selection-popup-results a")
+    FAVORITE_ICON_BUTTON = (By.CSS_SELECTOR, ".header-icon__icon i")
+    TEXT_EMPTY_FAV_LIST = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
+    AMOUNT_WISHLIST = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
 
 
-class AuthorizationPageLocators:
+class LoginPageLocators:
     LOGIN = (By.CSS_SELECTOR, ".header-main .i-icon-fl-profile")
     TELEPHONE = (By.CSS_SELECTOR, "#login-original")
     PASSWORD = (By.CSS_SELECTOR, "#login_password")
@@ -16,9 +19,10 @@ class AuthorizationPageLocators:
 
 
 class ProductPageLocators:
-    ICON_ADD_TO_FAVORITE = (By.CSS_SELECTOR, ".i-icon-fl-favorite.c-add-wishlist-btn")
-    FAVORITE_ICON = (By.CSS_SELECTOR, ".header-icon__icon .wishlist-amount")
-    OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".header-icon .i-icon-fl-favorite")
+    ICON_ADD_TO_FAVORITE = (By.CSS_SELECTOR, ".review-share .share mvid-icon[type='love']")
+    FAVORITE_ICON = (By.CSS_SELECTOR, ".tab-personal .number")
+    FAVORITE_ICON_EMPTY = (By.CSS_SELECTOR, ".tab-personal .disabled")
+    OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".tab-personal mvid-icon[type='love']")
     TITLE_SELECTED = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-title")
     NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-item .wishlist-product-title a")
     COUNT_PRODUCTS_IN_FAV = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
