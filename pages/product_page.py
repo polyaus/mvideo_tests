@@ -1,11 +1,11 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+from pages.base_page import BasePage
 from pages.locators import ProductPageLocators
-from pages.mainpage import MainPage
 
 
-class ProductPage(MainPage):
+class ProductPage(BasePage):
     def add_favorite_product(self):
         icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE)
         icon_add_to_favorite.click()

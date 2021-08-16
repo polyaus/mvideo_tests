@@ -1,8 +1,8 @@
+from pages.base_page import BasePage
 from pages.locators import LoginPageLocators
-from pages.mainpage import MainPage
 
 
-class LoginPage(MainPage):
+class LoginPage(BasePage):
     def user_authorization(self):
         login_button = self.browser.find_element(*LoginPageLocators.LOGIN)
         login_button.click()
