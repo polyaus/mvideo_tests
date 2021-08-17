@@ -2,7 +2,7 @@ from pages.login_page import LoginPage
 
 
 def test_user_auth(browser, login_page_url):
-    page = LoginPage(browser, login_page_url)
-    page.user_authorization()
-    page.enter_login_cabinet()
-    page.check_user_is_authorization()
+    login_page = LoginPage(browser, login_page_url)
+    login_page.user_authorization()
+    login_page.enter_login_cabinet()
+    login_page.check_user_is_authorization()
