@@ -76,3 +76,7 @@ class ProductPage(BasePage):
         fav_list_items = self.browser.find_elements(*ProductPageLocators.NAME_PRODUCT_IN_FAV)
         assert len(fav_list_items) == 1, "Favorite list has items not equals 2"
         assert fav_list_items[0].text == product_names[0], "Wrong favorite product name"
+
+    def close_ad_2(self):
+        element = self.browser.find_element(*ProductPageLocators.CLOSE_AD_2)
+        element.click()

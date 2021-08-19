@@ -8,6 +8,7 @@ def test_favorite_list_is_empty(browser, product_page_url):
 
 def test_add_product_to_fav(browser, product_page_url):
     product_page = ProductPage(browser, product_page_url)
+    product_page.close_ad_2()
     product_page.favorite_is_empty()
     product_page.add_favorite_product()
     product_page.in_favorite_list_one_product()
@@ -17,6 +18,7 @@ def test_add_product_to_fav(browser, product_page_url):
 
 def test_favorite_list_is_not_empty(browser, product_page_url):
     product_page = ProductPage(browser, product_page_url)
+    product_page.close_ad_2()
     product_page.favorite_is_empty()
     product_page.add_favorite_product()
     product_page.open_favorite_list()
@@ -25,6 +27,7 @@ def test_favorite_list_is_not_empty(browser, product_page_url):
 
 def test_product_in_favorite_list(browser, product_page_url):
     product_page = ProductPage(browser, product_page_url)
+    product_page.close_ad_2()
     product_page.favorite_is_empty()
     product_page.add_favorite_product()
     product_page.open_favorite_list()
@@ -33,6 +36,7 @@ def test_product_in_favorite_list(browser, product_page_url):
 
 def test_delete_product_from_favorite_list(browser, product_page_url):
     product_page = ProductPage(browser, product_page_url)
+    product_page.close_ad_2()
     product_page.favorite_is_empty()
     product_page.add_favorite_product()
     product_page.open_favorite_list()
@@ -43,6 +47,7 @@ def test_delete_product_from_favorite_list(browser, product_page_url):
 
 def test_add_two_product_in_fav(browser, product_page_url, product_page_url_2):
     product_page = ProductPage(browser, product_page_url)
+    product_page.close_ad_2()
     product_page.favorite_is_empty()
     product_page.add_favorite_product()
     product_page.open_favorite_list()
@@ -56,6 +61,7 @@ def test_add_two_product_in_fav(browser, product_page_url, product_page_url_2):
 
 def test_delete_first_added_product_from_favorite_list(browser, product_page_url, product_page_url_2):
     product_page = ProductPage(browser, product_page_url)
+    product_page.close_ad_2()
     product_page.favorite_is_empty()
     product_page.add_favorite_product()
     product_page.open_favorite_list()
@@ -70,6 +76,7 @@ def test_delete_first_added_product_from_favorite_list(browser, product_page_url
 
 def test_delete_all_two_products_from_favorite_list(browser, product_page_url, product_page_url_2):
     product_page = ProductPage(browser, product_page_url)
+    product_page.close_ad_2()
     product_page.favorite_is_empty()
     product_page.add_favorite_product()
     product_page.open_favorite_list()

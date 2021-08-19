@@ -24,7 +24,7 @@ class MainPage(BasePage):
         assert actual_city.text == "Калининград", "City is not corrected"
 
     def open_favorite_list_from_main_page(self):
-        self.browser.execute_script("$('.header-icon__icon .i-icon-fl-favorite').click()")
+        self.browser.execute_script(f"$({MainPageLocators.FAVORITE_ICON_BUTTON}).click()")
 
     def favorite_list_is_empty(self):
         wait = WebDriverWait(self.browser, 10)
@@ -35,3 +35,7 @@ class MainPage(BasePage):
 
         amount_favorite_on_button = self.browser.find_element(*MainPageLocators.AMOUNT_WISHLIST)
         assert amount_favorite_on_button.text == '', "Favorite list is not empty, sorry"
+
+    def close_ad_1(self):
+        element = self.browser.find_element(*MainPageLocators.CLOSE_AD_1)
+        element.click()
