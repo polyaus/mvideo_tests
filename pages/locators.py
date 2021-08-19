@@ -8,7 +8,7 @@ class MainPageLocators:
     FAVORITE_ICON_BUTTON = (By.CSS_SELECTOR, ".header-icon__icon .i-icon-fl-favorite")
     TEXT_EMPTY_FAV_LIST = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
     AMOUNT_WISHLIST = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
-    CLOSE_AD_1 = (By.CSS_SELECTOR, ".c-popup.c-popup_facelift")
+    CLOSE_AD = (By.CSS_SELECTOR, ".c-popup.c-popup_facelift")
 
 
 class LoginPageLocators:
@@ -30,4 +30,4 @@ class ProductPageLocators:
     COUNT_PRODUCTS_IN_FAV = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
     DELETE_FROM_FAV_PRODUCT = (By.CSS_SELECTOR, ".wishlist-action-links .wishlist-delete-btn")
     TEXT_AFTER_DELETE = (By.CSS_SELECTOR, ".c-notifications .c-notifications__messages")
-    CLOSE_AD_2 = (By.CSS_SELECTOR, ".modal-layout__close")
+    CLOSE_AD = (By.CSS_SELECTOR, ".modal-layout__close")
