@@ -7,7 +7,7 @@ class LoginPage(BasePage):
         login_button = self.browser.find_element(*LoginPageLocators.LOGIN)
         login_button.click()
 
-        self.browser.execute_script("$('.o-login__login .c-link').click()")
+        self.browser.execute_script(f"$({LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON}).click()")
 
         telephone_field = self.browser.find_element(*LoginPageLocators.TELEPHONE)
         telephone_field.send_keys("79220344446")
