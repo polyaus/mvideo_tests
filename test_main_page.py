@@ -1,5 +1,3 @@
-import time
-
 from pages.mainpage import MainPage
 
 
