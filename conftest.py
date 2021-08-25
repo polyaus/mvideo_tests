@@ -31,3 +31,8 @@ def product_page_url():
 @pytest.fixture(scope="function")
 def product_page_url_2():
     return "https://www.mvideo.ru/products/smartfon-xiaomi-redmi-9a-32gb-peacock-green-30051226"
+
+
+@pytest.fixture(scope="function")
+def favorite_page_url():
+    return "https://www.mvideo.ru/wish-list"
