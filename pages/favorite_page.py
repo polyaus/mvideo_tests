@@ -17,9 +17,6 @@ class FavoritePage(BasePage):
         assert text_empty_favorite_list.text == 'В избранном пока ничего нет', "Favorite list is empty"
 
     def favorite_list_is_not_empty(self):
-        wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(FavoritePageLocators.TITLE_SELECTED))
-
         title_selected = self.browser.find_element(*FavoritePageLocators.TITLE_SELECTED)
         assert title_selected.text == 'Избранное', "Favorite list is empty"
 
