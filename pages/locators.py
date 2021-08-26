@@ -34,4 +34,4 @@ class FavoritePageLocators:
     NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-item .wishlist-product-title a")
     COUNT_PRODUCTS_IN_FAV = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
     DELETE_FROM_FAV_PRODUCT = (By.CSS_SELECTOR, ".wishlist-action-links .wishlist-delete-btn")
-    TEXT_AFTER_DELETE = (By.CSS_SELECTOR, ".c-notifications .c-notifications__messages")
+    TEXT_AFTER_DELETE = (By.CSS_SELECTOR, ".c-notifications .c-notifications__messages .c-notifications__title")

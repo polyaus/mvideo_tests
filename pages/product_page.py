@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -6,9 +8,19 @@ from pages.locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
+    def open(self):
+        time.sleep(1)
+        super().open()
+
     def add_favorite_product(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(ProductPageLocators.ICON_ADD_TO_FAVORITE))
+
         icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE)
         icon_add_to_favorite.click()
+
+    def del_favorite_product(self):
+        self.add_favorite_product()
 
     def favorite_is_empty(self):
         assert self.is_not_element_present(*ProductPageLocators.FAVORITE_ICON), "Favorite list is not empty"
