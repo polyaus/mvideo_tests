@@ -9,7 +9,7 @@ from pages.locators import FavoritePageLocators
 
 class FavoritePage(BasePage):
     def open(self):
-        time.sleep(1)
+        time.sleep(2)
         super().open()
 
     def favorite_list_is_empty_from_favorite_list(self):
@@ -54,6 +54,7 @@ class FavoritePage(BasePage):
             "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
         ]
         delete_fav_product_buttons = self.browser.find_elements(*FavoritePageLocators.DELETE_FROM_FAV_PRODUCT)
+        assert len(delete_fav_product_buttons) == 2, "Delete favorite products buttons count is not two."
         delete_fav_product_buttons[1].click()
 
         fav_list_items = self.browser.find_elements(*FavoritePageLocators.NAME_PRODUCT_IN_FAV)
