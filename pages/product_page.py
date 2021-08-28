@@ -9,7 +9,7 @@ from pages.locators import ProductPageLocators
 
 class ProductPage(BasePage):
     def open(self):
-        time.sleep(1)
+        time.sleep(2)
         super().open()
 
     def add_favorite_product(self):
