@@ -31,12 +31,12 @@ class MainPage(BasePage):
         wait.until(EC.presence_of_element_located(MainPageLocators.TEXT_EMPTY_FAV_LIST))
 
         text_in_empty_favorite_list = self.browser.find_element(*MainPageLocators.TEXT_EMPTY_FAV_LIST)
-        assert text_in_empty_favorite_list.text == 'В избранном пока ничего нет', f"Favorite list is not empty!, " \
-                                                                                  f"{text_in_empty_favorite_list.text}"
+        assert text_in_empty_favorite_list.text == 'В избранном пока ничего нет', \
+            f"Favorite list is not empty!, {text_in_empty_favorite_list.text}"
 
         amount_favorite_on_button = self.browser.find_element(*MainPageLocators.AMOUNT_WISHLIST)
-        assert amount_favorite_on_button.text == '', f"Favorite list is not empty, sorry, " \
-                                                     f"{amount_favorite_on_button.text}"
+        assert amount_favorite_on_button.text == '', \
+            f"Favorite list is not empty, sorry, {amount_favorite_on_button.text}"
 
     def close_ad_1(self):
         element = self.browser.find_element(*MainPageLocators.CLOSE_AD)
