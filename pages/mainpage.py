@@ -21,7 +21,7 @@ class MainPage(BasePage):
 
     def check_location_is_kaliningrad(self):
         actual_city = self.browser.find_element(*MainPageLocators.LOCATION)
-        assert actual_city.text == "Калининград", "City is not corrected"
+        assert actual_city.text == "Калининград", f"City is not corrected, {actual_city.text}"
 
     def open_favorite_list_from_main_page(self):
         self.browser.execute_script(f"$({MainPageLocators.FAVORITE_ICON_BUTTON}).click()")
@@ -31,10 +31,12 @@ class MainPage(BasePage):
         wait.until(EC.presence_of_element_located(MainPageLocators.TEXT_EMPTY_FAV_LIST))
 
         text_in_empty_favorite_list = self.browser.find_element(*MainPageLocators.TEXT_EMPTY_FAV_LIST)
-        assert text_in_empty_favorite_list.text == 'В избранном пока ничего нет', "Favorite list is not empty!"
+        assert text_in_empty_favorite_list.text == 'В избранном пока ничего нет', f"Favorite list is not empty!, " \
+                                                                                  f"{text_in_empty_favorite_list.text}"
 
         amount_favorite_on_button = self.browser.find_element(*MainPageLocators.AMOUNT_WISHLIST)
-        assert amount_favorite_on_button.text == '', "Favorite list is not empty, sorry"
+        assert amount_favorite_on_button.text == '', f"Favorite list is not empty, sorry, " \
+                                                     f"{amount_favorite_on_button.text}"
 
     def close_ad_1(self):
         element = self.browser.find_element(*MainPageLocators.CLOSE_AD)

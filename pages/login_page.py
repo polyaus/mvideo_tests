@@ -24,4 +24,4 @@ class LoginPage(BasePage):
 
     def check_user_is_authorization(self):
         cabinet_head = self.browser.find_element(*LoginPageLocators.CABINET_HEAD)
-        assert cabinet_head.text == "Личный кабинет", "User is not authorized"
+        assert cabinet_head.text == "Личный кабинет", f"User is not authorized, {cabinet_head.text}"

@@ -30,14 +30,14 @@ class ProductPage(BasePage):
         wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
 
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
-        assert int(favorite_icon.text) == 1, "Product is not added in favorite list"
+        assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
 
     def in_favorite_list_two_products(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
 
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
-        assert int(favorite_icon.text) == 2, "Product is not added in favorite list"
+        assert int(favorite_icon.text) == 2, f"Product is not added in favorite list, {favorite_icon.text}"
 
     def close_ad(self):
         element = self.browser.find_element(*ProductPageLocators.CLOSE_AD)
