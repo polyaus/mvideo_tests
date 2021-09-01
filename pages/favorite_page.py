@@ -8,6 +8,11 @@ from pages.locators import FavoritePageLocators
 
 
 class FavoritePage(BasePage):
+    PRODUCT_NAMES = [
+        "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
+        "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
+    ]
+
     def open(self):
         time.sleep(2)
         super().open()
@@ -33,14 +38,10 @@ class FavoritePage(BasePage):
         count_fav_products = self.browser.find_element(*FavoritePageLocators.COUNT_PRODUCTS_IN_FAV)
         assert int(count_fav_products.text) == 2, f"Favorite list has more one product, {count_fav_products.text}"
 
-        product_names = [
-            "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
-            "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
-        ]
         fav_list_items = self.browser.find_elements(*FavoritePageLocators.NAME_PRODUCT_IN_FAV)
         assert len(fav_list_items) == 2, f"Favorite list has items not equals 2, {len(fav_list_items)}"
-        assert fav_list_items[0].text == product_names[0], f"Wrong favorite product name, {fav_list_items[0].text}"
-        assert fav_list_items[1].text == product_names[1], f"Wrong favorite product name, {fav_list_items[1].text}"
+        assert fav_list_items[0].text == self.PRODUCT_NAMES[0], f"Wrong favorite product name, {fav_list_items[0].text}"
+        assert fav_list_items[1].text == self.PRODUCT_NAMES[1], f"Wrong favorite product name, {fav_list_items[1].text}"
 
     def delete_product_from_favorite_list(self):
         delete_fav_product_button = self.browser.find_element(*FavoritePageLocators.DELETE_FROM_FAV_PRODUCT)
@@ -50,10 +51,6 @@ class FavoritePage(BasePage):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(FavoritePageLocators.DELETE_FROM_FAV_PRODUCT))
 
-        product_names = [
-            "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
-            "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
-        ]
         delete_fav_product_buttons = self.browser.find_elements(*FavoritePageLocators.DELETE_FROM_FAV_PRODUCT)
         assert len(delete_fav_product_buttons) == 2, \
             f"Delete favorite products buttons count is not two, {len(delete_fav_product_buttons)}"
@@ -61,7 +58,7 @@ class FavoritePage(BasePage):
 
         fav_list_items = self.browser.find_elements(*FavoritePageLocators.NAME_PRODUCT_IN_FAV)
         assert len(fav_list_items) == 1, f"Favorite list has items not equals 2, {len(fav_list_items)}"
-        assert fav_list_items[0].text == product_names[0], f"Wrong favorite product name, {fav_list_items[0].text}"
+        assert fav_list_items[0].text == self.PRODUCT_NAMES[0], f"Wrong favorite product name, {fav_list_items[0].text}"
 
     def favorite_list_is_empty_after_delete_product(self):
         wait = WebDriverWait(self.browser, 10)
