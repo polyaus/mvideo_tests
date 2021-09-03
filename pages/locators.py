@@ -1,7 +1,11 @@
 from selenium.webdriver.common.by import By
 
 
-class MainPageLocators:
+class BasePageLocators:
+    BODY = (By.CSS_SELECTOR, "body")
+
+
+class MainPageLocators(BasePageLocators):
     LOCATION = (By.CSS_SELECTOR, ".header_fixed .header-top-line__link-text")
     CITY_INPUT = (By.CSS_SELECTOR, "#region-selection-form-city-input")
     GIVEN_CITY = (By.CSS_SELECTOR, ".city-selection-popup-results a")
@@ -11,16 +15,18 @@ class MainPageLocators:
     CLOSE_AD = (By.CSS_SELECTOR, ".c-popup.c-popup_facelift")
 
 
-class LoginPageLocators:
+class LoginPageLocators(BasePageLocators):
     LOGIN = (By.CSS_SELECTOR, ".header-main .i-icon-fl-profile")
+    LOGOUT = (By.CSS_SELECTOR, ".tooltipster-sidetip-profile .header-user__actions a[data-holder='#signout']")
     ENTER_WITH_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".o-login__login .c-link")
     TELEPHONE = (By.CSS_SELECTOR, "#login-original")
     PASSWORD = (By.CSS_SELECTOR, "#login_password")
     SUBMIT_BUTTON = (By.CSS_SELECTOR, "#submit-button")
     CABINET_HEAD = (By.CSS_SELECTOR, ".main-holder h1")
+    TEXT_ON_BUTTON_ENTER = (By.CSS_SELECTOR, ".header-icon .header-icon__text")
 
 
-class ProductPageLocators:
+class ProductPageLocators(BasePageLocators):
     ICON_ADD_TO_FAVORITE = (By.CSS_SELECTOR, ".review-share .share mvid-icon[type='love']")
     FAVORITE_ICON = (By.CSS_SELECTOR, ".tab-personal .number")
     FAVORITE_ICON_EMPTY = (By.CSS_SELECTOR, ".tab-personal .disabled")
@@ -28,7 +34,7 @@ class ProductPageLocators:
     CLOSE_AD = (By.CSS_SELECTOR, ".modal-layout__close")
 
 
-class FavoritePageLocators:
+class FavoritePageLocators(BasePageLocators):
     TEXT_EMPTY_FAVORITE_LIST = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
     TITLE_SELECTED = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-title")
     NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-product-title a")

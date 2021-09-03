@@ -1,4 +1,5 @@
 import time
+from selenium.webdriver.common.action_chains import ActionChains
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -20,6 +21,11 @@ class ProductPage(BasePage):
         icon_add_to_favorite.click()
 
     def del_favorite_product(self):
+        body = self.browser.find_element(*ProductPageLocators.BODY)
+        action = ActionChains(self.browser)
+        action.move_to_element(body).perform()
+        body.click()
+
         self.add_favorite_product()
 
     def favorite_is_empty(self):

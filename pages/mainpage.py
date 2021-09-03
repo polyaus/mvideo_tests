@@ -39,5 +39,9 @@ class MainPage(BasePage):
             f"Favorite list is not empty, sorry, {amount_favorite_on_button.text}"
 
     def close_ad_1(self):
+        """
+        temporarily method (right now don't need)
+        """
+
         element = self.browser.find_element(*MainPageLocators.CLOSE_AD)
         element.click()

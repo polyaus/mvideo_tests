@@ -8,6 +8,7 @@ def browser():
     prefs = {"profile.default_content_setting_values.notifications": 2}
     chrome_options.add_experimental_option("prefs", prefs)
     browser = webdriver.Chrome(chrome_options=chrome_options)
+    browser.set_window_size(1320, 1024)
 
     yield browser
     browser.quit()
