@@ -1,8 +1,12 @@
 from selenium.webdriver.common.by import By
 
 
-class MainPageLocators:
-    LOCATION = (By.CSS_SELECTOR, ".header_fixed .header-top-line__link-text")
+class BasePageLocators:
+    BODY = (By.CSS_SELECTOR, "body")
+
+
+class MainPageLocators(BasePageLocators):
+    LOCATION = (By.CSS_SELECTOR, "#header-city-selection-link .header-top-line__link-text")
     CITY_INPUT = (By.CSS_SELECTOR, "#region-selection-form-city-input")
     GIVEN_CITY = (By.CSS_SELECTOR, ".city-selection-popup-results a")
     FAVORITE_ICON_BUTTON = (By.CSS_SELECTOR, ".header-icon__icon .i-icon-fl-favorite")
@@ -11,8 +15,8 @@ class MainPageLocators:
     CLOSE_AD = (By.CSS_SELECTOR, ".c-popup.c-popup_facelift")
 
 
-class LoginPageLocators:
-    LOGIN = (By.CSS_SELECTOR, ".header-main .i-icon-fl-profile")
+class LoginPageLocators(BasePageLocators):
+    LOGIN = (By.CSS_SELECTOR, ".header-main .header-icon_default .i-icon-fl-profile")
     ENTER_WITH_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".o-login__login .c-link")
     TELEPHONE = (By.CSS_SELECTOR, "#login-original")
     PASSWORD = (By.CSS_SELECTOR, "#login_password")
@@ -20,18 +24,20 @@ class LoginPageLocators:
     CABINET_HEAD = (By.CSS_SELECTOR, ".main-holder h1")
 
 
-class ProductPageLocators:
+class ProductPageLocators(BasePageLocators):
     ICON_ADD_TO_FAVORITE = (By.CSS_SELECTOR, ".review-share .share mvid-icon[type='love']")
-    FAVORITE_ICON = (By.CSS_SELECTOR, ".tab-personal .number")
+    FAVORITE_ICON = (By.CSS_SELECTOR, ".tab-personal .bubble")
+    FAVORITE_ICON_ANIMATED = (By.CSS_SELECTOR, ".tab-personal .bubble.animated")
+    ACTIVE_FAVORITE_ICON = (By.CSS_SELECTOR, ".review-share .mv-icon-button--active")
     FAVORITE_ICON_EMPTY = (By.CSS_SELECTOR, ".tab-personal .disabled")
     OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".tab-personal mvid-icon[type='love']")
     CLOSE_AD = (By.CSS_SELECTOR, ".modal-layout__close")
 
 
-class FavoritePageLocators:
+class FavoritePageLocators(BasePageLocators):
     TEXT_EMPTY_FAVORITE_LIST = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
     TITLE_SELECTED = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-title")
-    NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-product-title a")
+    NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-item .wishlist-product-title a")
     COUNT_PRODUCTS_IN_FAV = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
-    DELETE_FROM_FAV_PRODUCT = (By.CSS_SELECTOR, ".wishlist-action-links .wishlist-delete-btn")
+    DELETE_FROM_FAV_PRODUCT = (By.CSS_SELECTOR, ".wishlist-action-links .wishlist-delete-btn .i-icon-fl-trash")
     TEXT_AFTER_DELETE = (By.CSS_SELECTOR, ".c-notifications .c-notifications__title")
