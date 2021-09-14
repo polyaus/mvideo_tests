@@ -7,6 +7,9 @@ from pages.locators import MainPageLocators
 
 class MainPage(BasePage):
     def change_location_to_kaliningrad(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(MainPageLocators.LOCATION))
+
         locate = self.browser.find_element(*MainPageLocators.LOCATION)
         locate.click()
 

@@ -1,9 +1,15 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
 from pages.base_page import BasePage
 from pages.locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
     def user_authorization(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(LoginPageLocators.LOGIN))
+
         login_button = self.browser.find_element(*LoginPageLocators.LOGIN)
         login_button.click()
 

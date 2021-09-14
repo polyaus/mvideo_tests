@@ -43,6 +43,9 @@ class FavoritePage(BasePage):
         assert fav_list_items[1].text == product_names[1], f"Wrong favorite product name, {fav_list_items[1].text}"
 
     def delete_product_from_favorite_list(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(FavoritePageLocators.DELETE_FROM_FAV_PRODUCT))
+
         delete_fav_product_button = self.browser.find_element(*FavoritePageLocators.DELETE_FROM_FAV_PRODUCT)
         delete_fav_product_button.click()
 

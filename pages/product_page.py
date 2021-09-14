@@ -20,21 +20,35 @@ class ProductPage(BasePage):
         icon_add_to_favorite.click()
 
     def del_favorite_product(self):
-        self.add_favorite_product()
+        wait = WebDriverWait(self.browser, 10)
+        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_ANIMATED))
+
+        icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ACTIVE_FAVORITE_ICON)
+        icon_add_to_favorite.click()
 
     def favorite_is_empty(self):
-        assert self.is_not_element_present(*ProductPageLocators.FAVORITE_ICON), "Favorite list is not empty"
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_EMPTY))
+
+        assert self.is_element_present(*ProductPageLocators.FAVORITE_ICON_EMPTY), "Favorite list is not empty"
 
     def in_favorite_list_one_product(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
+        wait.until(EC.presence_of_element_located(ProductPageLocators.ACTIVE_FAVORITE_ICON))
+
+        favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
+        assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
+
+    def in_favorite_list_one_product_after_delete(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_ANIMATED))
 
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
         assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
 
     def in_favorite_list_two_products(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
+        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_ANIMATED))
 
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
         assert int(favorite_icon.text) == 2, f"Product is not added in favorite list, {favorite_icon.text}"

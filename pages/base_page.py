@@ -1,6 +1,9 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver import ActionChains
+
+from pages.locators import BasePageLocators
 
 
 class BasePage:
@@ -32,3 +35,9 @@ class BasePage:
             return True
 
         return False
+
+    def click_body(self):
+        body = self.browser.find_element(*BasePageLocators.BODY)
+        action = ActionChains(self.browser)
+        action.move_to_element(body).perform()
+        body.click()
