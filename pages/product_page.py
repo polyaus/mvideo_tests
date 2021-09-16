@@ -1,5 +1,6 @@
 import time
 
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -19,18 +20,20 @@ class ProductPage(BasePage):
         icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE)
         icon_add_to_favorite.click()
 
-    def del_favorite_product(self):
-        wait = WebDriverWait(self.browser, 10)
-        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_ANIMATED))
-
-        icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ACTIVE_FAVORITE_ICON)
+    def add_favorite_product_authorizated_user(self):
+        icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE_AUTH_USER)
         icon_add_to_favorite.click()
 
-    def favorite_is_empty(self):
-        wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_EMPTY))
+    def del_favorite_product(self):
+        body = self.browser.find_element(*ProductPageLocators.BODY)
+        action = ActionChains(self.browser)
+        action.move_to_element(body).perform()
+        body.click()
 
-        assert self.is_element_present(*ProductPageLocators.FAVORITE_ICON_EMPTY), "Favorite list is not empty"
+        self.add_favorite_product()
+
+    def favorite_is_empty(self):
+        assert self.is_not_element_present(*ProductPageLocators.FAVORITE_ICON), "Favorite list is not empty"
 
     def in_favorite_list_one_product(self):
         wait = WebDriverWait(self.browser, 10)
@@ -39,11 +42,11 @@ class ProductPage(BasePage):
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
         assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
 
-    def in_favorite_list_one_product_after_delete(self):
+    def in_favorite_list_one_product_authorizated_user(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_ANIMATED))
+        wait.until_not(EC.presence_of_element_located(ProductPageLocators.EMPTY_WISH_LIST))
 
-        favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
+        favorite_icon = self.browser.find_element(*ProductPageLocators.AMOUNT_WISHLIST)
         assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
 
     def in_favorite_list_two_products(self):
