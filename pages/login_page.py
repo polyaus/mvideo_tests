@@ -7,7 +7,7 @@ from pages.locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
-    def user_authorization(self):
+    def open_form_authorization(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(LoginPageLocators.LOGIN))
 
@@ -16,6 +16,7 @@ class LoginPage(BasePage):
 
         self.browser.execute_script(f"$({LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON}).click()")
 
+    def enter_user_data_for_authorization(self):
         telephone_field = self.browser.find_element(*LoginPageLocators.TELEPHONE)
         telephone_field.send_keys("79220344446")
 
@@ -72,6 +73,14 @@ class LoginPage(BasePage):
 
         count_fav_products_down = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_DOWN)
         assert int(count_fav_products_down.text) == 1, \
+            f"Favorite list has no one product, {count_fav_products_down.text}"
+
+    def check_two_products_in_favorite_from_login_page(self):
+        count_fav_products_up = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP)
+        assert int(count_fav_products_up.text) == 2, f"Favorite list has no one product, {count_fav_products_up.text}"
+
+        count_fav_products_down = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_DOWN)
+        assert int(count_fav_products_down.text) == 2, \
             f"Favorite list has no one product, {count_fav_products_down.text}"
 
     def favorite_is_empty_from_login_page_logout(self):

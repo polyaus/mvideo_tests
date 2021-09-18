@@ -39,8 +39,9 @@ class FavoritePage(BasePage):
         ]
         fav_list_items = self.browser.find_elements(*FavoritePageLocators.NAME_PRODUCT_IN_FAV)
         assert len(fav_list_items) == 2, f"Favorite list has items not equals 2, {len(fav_list_items)}"
-        assert fav_list_items[0].text == product_names[0], f"Wrong favorite product name, {fav_list_items[0].text}"
-        assert fav_list_items[1].text == product_names[1], f"Wrong favorite product name, {fav_list_items[1].text}"
+        assert fav_list_items[0].text != fav_list_items[1].text, f"Duplicate product names, {fav_list_items[0].text}"
+        assert fav_list_items[0].text in product_names, f"Wrong favorite product name, {fav_list_items[0].text}"
+        assert fav_list_items[1].text in product_names, f"Wrong favorite product name, {fav_list_items[1].text}"
 
     def delete_product_from_favorite_list(self):
         wait = WebDriverWait(self.browser, 10)

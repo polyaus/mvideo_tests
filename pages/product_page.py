@@ -37,14 +37,14 @@ class ProductPage(BasePage):
 
     def in_favorite_list_one_product(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(ProductPageLocators.ACTIVE_FAVORITE_ICON))
+        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
 
         favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
         assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
 
     def in_favorite_list_one_product_authorizated_user(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until_not(EC.presence_of_element_located(ProductPageLocators.EMPTY_WISH_LIST))
+        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
 
         favorite_icon = self.browser.find_element(*ProductPageLocators.AMOUNT_WISHLIST)
         assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
