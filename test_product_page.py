@@ -51,7 +51,7 @@ def test_delete_two_product_from_favorite_list_on_product_page(browser, product_
 
     product_page = ProductPage(browser, product_page_url)
     product_page.del_favorite_product()
-    product_page.in_favorite_list_one_product_after_delete()
+    product_page.in_favorite_list_one_product()
 
     product_page_2 = ProductPage(browser, product_page_url_2)
     product_page_2.del_favorite_product()

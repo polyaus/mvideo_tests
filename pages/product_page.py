@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,10 +7,6 @@ from pages.locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    def open(self):
-        time.sleep(2)
-        super().open()
-
     def add_favorite_product(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(ProductPageLocators.ICON_ADD_TO_FAVORITE))

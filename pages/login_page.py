@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -34,7 +35,6 @@ class LoginPage(BasePage):
         icon_login_cabinet = self.browser.find_element(*LoginPageLocators.USER)
         action = ActionChains(self.browser)
         action.move_to_element(icon_login_cabinet).perform()
-        # icon_login_cabinet.click()
 
         enter_login_cabinet = self.browser.find_element(*LoginPageLocators.USERNAME)
         action = ActionChains(self.browser)
@@ -46,6 +46,11 @@ class LoginPage(BasePage):
         assert cabinet_head.text == "Личный кабинет", f"User is not authorized, {cabinet_head.text}"
 
     def user_logout(self):
+        try:
+            self.check_user_is_authorization()
+        except NoSuchElementException:
+            return
+
         user_logout_menu = self.browser.find_element(*LoginPageLocators.LOGIN)
         action = ActionChains(self.browser)
         action.move_to_element(user_logout_menu).perform()
@@ -68,6 +73,9 @@ class LoginPage(BasePage):
         assert int(count_fav_products_down.text) == 0, f"Favorite list is not empty, {count_fav_products_down.text}"
 
     def check_product_in_favorite_from_login_page(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP))
+
         count_fav_products_up = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP)
         assert int(count_fav_products_up.text) == 1, f"Favorite list has no one product, {count_fav_products_up.text}"
 
@@ -84,9 +92,5 @@ class LoginPage(BasePage):
             f"Favorite list has no one product, {count_fav_products_down.text}"
 
     def favorite_is_empty_from_login_page_logout(self):
-        # wait = WebDriverWait(self.browser, 10)
-        # wait.until_not(EC.presence_of_element_located(LoginPageLocators.EMPTY_WISH_LIST))
-        # time.sleep(5)
-
         count_fav_products_up = self.browser.find_element(*LoginPageLocators.EMPTY_WISH_LIST)
         assert count_fav_products_up, f"Favorite list is not empty, {count_fav_products_up.text}"
