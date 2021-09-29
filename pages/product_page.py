@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -51,5 +52,9 @@ class ProductPage(BasePage):
         assert int(favorite_icon.text) == 2, f"Product is not added in favorite list, {favorite_icon.text}"
 
     def close_ad(self):
-        element = self.browser.find_element(*ProductPageLocators.CLOSE_AD)
+        try:
+            element = self.browser.find_element(*ProductPageLocators.CLOSE_AD)
+        except NoSuchElementException:
+            return
+
         element.click()

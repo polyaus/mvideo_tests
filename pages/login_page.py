@@ -18,6 +18,9 @@ class LoginPage(BasePage):
         self.browser.execute_script(f"$({LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON}).click()")
 
     def enter_user_data_for_authorization(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(LoginPageLocators.TELEPHONE))
+
         telephone_field = self.browser.find_element(*LoginPageLocators.TELEPHONE)
         telephone_field.send_keys("79220344446")
 
