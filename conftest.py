@@ -1,6 +1,8 @@
 import pytest
 from selenium import webdriver
 
+PRODUCT_PAGE_URL_1 = "https://www.mvideo.ru/products/smartfon-apple-iphone-12-pro-max-512gb-gold-mgdk3ru-a-30052922"
+
 
 @pytest.fixture(scope="function")
 def browser():
@@ -30,7 +32,7 @@ def login_page_url():
 
 @pytest.fixture(scope="function")
 def product_page_url():
-    return "https://www.mvideo.ru/products/smartfon-apple-iphone-12-pro-max-512gb-gold-mgdk3ru-a-30052922"
+    return PRODUCT_PAGE_URL_1
 
 
 @pytest.fixture(scope="function")

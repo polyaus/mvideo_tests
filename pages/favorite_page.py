@@ -9,6 +9,7 @@ from pages.locators import FavoritePageLocators
 class FavoritePage(BasePage):
     def favorite_list_is_empty_from_favorite_list(self):
         text_empty_favorite_list = self.browser.find_element(*FavoritePageLocators.TEXT_EMPTY_FAVORITE_LIST)
+
         assert text_empty_favorite_list.text == 'В избранном пока ничего нет', \
             f"Favorite list is empty, {text_empty_favorite_list.text}"
 
