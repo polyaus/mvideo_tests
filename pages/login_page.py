@@ -10,16 +10,15 @@ from pages.locators import LoginPageLocators
 class LoginPage(BasePage):
     def open_form_authorization(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(LoginPageLocators.LOGIN))
+        wait.until(EC.presence_of_element_located(LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON))
 
-        login_button = self.browser.find_element(*LoginPageLocators.LOGIN)
-        login_button.click()
-
-        self.browser.execute_script(f"$({LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON}).click()")
+        change_enter_button = self.browser.find_element(*LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON)
+        if change_enter_button.text == "Войти с помощью пароля":
+            change_enter_button.click()
 
     def enter_user_data_for_authorization(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(LoginPageLocators.TELEPHONE))
+        wait.until(EC.presence_of_element_located(LoginPageLocators.PASSWORD))
 
         telephone_field = self.browser.find_element(*LoginPageLocators.TELEPHONE)
         telephone_field.send_keys("79220344446")
@@ -77,7 +76,7 @@ class LoginPage(BasePage):
 
     def check_product_in_favorite_from_login_page(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP))
+        wait.until(EC.presence_of_element_located(LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_DOWN))
 
         count_fav_products_up = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP)
         assert int(count_fav_products_up.text) == 1, f"Favorite list has no one product, {count_fav_products_up.text}"

@@ -28,6 +28,9 @@ class ProductPage(BasePage):
         self.add_favorite_product()
 
     def favorite_is_empty(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_EMPTY))
+
         assert self.is_not_element_present(*ProductPageLocators.FAVORITE_ICON), "Favorite list is not empty"
 
     def in_favorite_list_one_product(self):

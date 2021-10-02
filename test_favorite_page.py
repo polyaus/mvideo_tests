@@ -102,31 +102,40 @@ def test_delete_all_two_products_from_favorite_list(browser, product_page_url, p
 
 
 class TestUserCases:
-    def setup_method(self, method):
+    @classmethod
+    def setup_class(cls):
         chrome_options = webdriver.ChromeOptions()
         prefs = {"profile.default_content_setting_values.notifications": 2}
         chrome_options.add_experimental_option("prefs", prefs)
         chrome_options.add_argument('--window-size=1320,1080')
-        self.browser = webdriver.Chrome(chrome_options=chrome_options)
+        cls.browser = webdriver.Chrome(chrome_options=chrome_options)
+
+    @classmethod
+    def teardown_class(cls):
+        cls.browser.quit()
 
     def teardown_method(self, method):
         login_page = LoginPage(self.browser, login_page_url_raw())
         login_page.open_user_cabinet()
         login_page.user_logout()
+        login_page.check_user_is_not_authorization()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url_raw())
         favorite_page.delete_all_products_from_favorite_list()
+        favorite_page.favorite_list_is_empty_from_favorite_list()
 
         login_page = LoginPage(self.browser, login_page_url_raw())
         login_page.enter_user_data_for_authorization()
+        login_page.check_user_is_authorization()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url_raw())
         favorite_page.delete_all_products_from_favorite_list()
+        favorite_page.favorite_list_is_empty_after_delete_product()
 
         login_page = LoginPage(self.browser, login_page_url_raw())
+        login_page.open_user_cabinet()
         login_page.user_logout()
-
-        self.browser.quit()
+        login_page.check_user_is_not_authorization()
 
     def test_authorization_after_add_one_product_in_favorite_list(self, product_page_url, login_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
@@ -138,7 +147,6 @@ class TestUserCases:
         login_page = LoginPage(self.browser, login_page_url)
         login_page.open_form_authorization()
         login_page.enter_user_data_for_authorization()
-        login_page.open_user_cabinet_after_add_to_favorite_product()
         login_page.check_user_is_authorization()
         login_page.check_product_in_favorite_from_login_page()
 
@@ -181,7 +189,6 @@ class TestUserCases:
         login_page = LoginPage(self.browser, login_page_url)
         login_page.open_form_authorization()
         login_page.enter_user_data_for_authorization()
-        login_page.open_user_cabinet_after_add_to_favorite_product()
         login_page.check_user_is_authorization()
         login_page.check_product_in_favorite_from_login_page()
 
@@ -200,4 +207,5 @@ class TestUserCases:
         login_page.open_user_cabinet()
         login_page.check_two_products_in_favorite_from_login_page()
         login_page.user_logout()
+        login_page.check_user_is_not_authorization()
         login_page.favorite_is_empty_from_login_page_logout()

@@ -20,7 +20,7 @@ class LoginPageLocators(BasePageLocators):
     USER = (By.CSS_SELECTOR, ".tab-profile .title")
     USERNAME = (By.CSS_SELECTOR, ".tooltip--visible .menu .tooltip__menu-link")
     LOGOUT = (By.CSS_SELECTOR, ".tooltipster-sidetip-profile .header-user__actions a[data-holder='#signout']")
-    ENTER_WITH_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".o-login__login .c-link")
+    ENTER_WITH_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".o-login__login .c-link[data-holder=\"#useEmailToEnter\"]")
     TELEPHONE = (By.CSS_SELECTOR, "#login-original")
     PASSWORD = (By.CSS_SELECTOR, "#login_password")
     SUBMIT_BUTTON = (By.CSS_SELECTOR, "#submit-button")
