@@ -1,3 +1,5 @@
+import time
+
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -18,6 +20,7 @@ class BasePage:
         self.browser.implicitly_wait(timeout)
 
     def open(self):
+        time.sleep(2)
         self.browser.get(self.url)
 
     def is_element_present(self, how, what):

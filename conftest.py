@@ -19,9 +19,13 @@ def main_page_url():
     return "https://www.mvideo.ru/"
 
 
+def login_page_url_raw():
+    return "https://www.mvideo.ru/login"
+
+
 @pytest.fixture(scope="function")
 def login_page_url():
-    return "https://www.mvideo.ru/login"
+    return login_page_url_raw()
 
 
 @pytest.fixture(scope="function")
@@ -34,6 +38,10 @@ def product_page_url_2():
     return "https://www.mvideo.ru/products/smartfon-xiaomi-redmi-9a-32gb-peacock-green-30051226"
 
 
+def favorite_page_url_raw():
+    return "https://www.mvideo.ru/wish-list"
+
+
 @pytest.fixture(scope="function")
 def favorite_page_url():
-    return "https://www.mvideo.ru/wish-list"
+    return favorite_page_url_raw()
