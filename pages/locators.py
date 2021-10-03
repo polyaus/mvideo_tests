@@ -12,7 +12,6 @@ class MainPageLocators(BasePageLocators):
     FAVORITE_ICON_BUTTON = (By.CSS_SELECTOR, ".header-icon__icon .i-icon-fl-favorite")
     TEXT_EMPTY_FAV_LIST = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
     AMOUNT_WISHLIST = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
-    CLOSE_AD = (By.CSS_SELECTOR, ".c-popup.c-popup_facelift")
 
 
 class LoginPageLocators(BasePageLocators):

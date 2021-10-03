@@ -40,7 +40,3 @@ class MainPage(BasePage):
         amount_favorite_on_button = self.browser.find_element(*MainPageLocators.AMOUNT_WISHLIST)
         assert amount_favorite_on_button.text == '', \
             f"Favorite list is not empty, sorry, {amount_favorite_on_button.text}"
-
-    def close_ad_1(self):
-        element = self.browser.find_element(*MainPageLocators.CLOSE_AD)
-        element.click()
