@@ -27,11 +27,10 @@ class ProductPage(BasePage):
 
         try:
             active_fav_button = self.browser.find_element(*ProductPageLocators.ACTIVE_FAVORITE_ICON)
-            if active_fav_button:
-                self.add_favorite_product()
-
         except NoSuchElementException:
             return
+        else:
+            self.add_favorite_product()
 
     def favorite_is_empty(self):
         wait = WebDriverWait(self.browser, 10)
