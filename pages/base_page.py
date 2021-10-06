@@ -44,3 +44,11 @@ class BasePage:
         action = ActionChains(self.browser)
         action.move_to_element(body).perform()
         body.click()
+
+    def close_ad(self):
+        try:
+            element = self.browser.find_element(*BasePageLocators.CLOSE_AD)
+        except NoSuchElementException:
+            return
+
+        element.click()

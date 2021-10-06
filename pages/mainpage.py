@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -13,7 +14,10 @@ class MainPage(BasePage):
         locate = self.browser.find_element(*MainPageLocators.LOCATION)
         locate.click()
 
-        entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT)
+        try:
+            entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT)
+        except NoSuchElementException:
+            entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT_RESERVE)
         entry_field.send_keys("Калининград")
 
         given_cities = self.browser.find_elements(*MainPageLocators.GIVEN_CITY)

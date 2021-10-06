@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     BODY = (By.CSS_SELECTOR, "body")
+    CLOSE_AD = (By.CSS_SELECTOR, ".modal-layout__close")
 
 
 class MainPageLocators(BasePageLocators):

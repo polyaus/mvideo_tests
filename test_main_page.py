@@ -1,11 +1,13 @@
 from pages.mainpage import MainPage
 from utils.browsers import build_browser
+from utils.pages import main_page_close_ad
 
 
 class TestsFromMainPage:
     @classmethod
     def setup_class(cls):
         cls.browser = build_browser()
+        main_page_close_ad(cls.browser)
 
     @classmethod
     def teardown_class(cls):
