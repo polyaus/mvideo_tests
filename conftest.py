@@ -9,12 +9,16 @@ FAVORITE_PAGE_URL = "https://www.mvideo.ru/wish-list"
 
 @pytest.fixture(scope="function")
 def main_page_url():
-    return MAIN_PAGE_URL
+    return "https://www.mvideo.ru/"
+
+
+def login_page_url_raw():
+    return "https://www.mvideo.ru/login"
 
 
 @pytest.fixture(scope="function")
 def login_page_url():
-    return LOGIN_PAGE_URL
+    return login_page_url_raw()
 
 
 @pytest.fixture(scope="function")
@@ -27,6 +31,10 @@ def product_page_url_2():
     return PRODUCT_PAGE_URL_2
 
 
+def favorite_page_url_raw():
+    return "https://www.mvideo.ru/wish-list"
+
+
 @pytest.fixture(scope="function")
 def favorite_page_url():
-    return FAVORITE_PAGE_URL
+    return favorite_page_url_raw()
