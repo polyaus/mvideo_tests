@@ -55,7 +55,7 @@ class FavoritePage(BasePage):
         except TimeoutException:
             return
 
-        while True:
+        for _ in range(50):
             delete_buttons = self.browser.find_elements(*FavoritePageLocators.DELETE_FROM_FAV_PRODUCT)
             if not delete_buttons:
                 break

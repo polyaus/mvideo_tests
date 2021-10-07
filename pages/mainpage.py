@@ -16,7 +16,7 @@ class MainPage(BasePage):
         entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT)
         entry_field.send_keys("Калининград")
 
-        while True:
+        for _ in range(50):
             given_cities = self.browser.find_elements(*MainPageLocators.GIVEN_CITY)
             if len(given_cities) == 2:
                 break
