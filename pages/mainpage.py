@@ -1,4 +1,3 @@
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -14,33 +13,26 @@ class MainPage(BasePage):
         locate = self.browser.find_element(*MainPageLocators.LOCATION)
         locate.click()
 
-        try:
-            entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT)
-        except NoSuchElementException:
-            entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT_RESERVE)
+        entry_field = self.browser.find_element(*MainPageLocators.CITY_INPUT)
         entry_field.send_keys("Калининград")
 
-        given_cities = self.browser.find_elements(*MainPageLocators.GIVEN_CITY)
+        while True:
+            given_cities = self.browser.find_elements(*MainPageLocators.GIVEN_CITY)
+            if len(given_cities) == 2:
+                break
+
         for given_city in given_cities:
-            if given_city.text.startswith("Калининград,"):
+            if given_city.text == "г Калининград":
                 given_city.click()
                 break
 
     def check_location_is_kaliningrad(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.text_to_be_present_in_element(MainPageLocators.LOCATION, "Калининград"))
+
         actual_city = self.browser.find_element(*MainPageLocators.LOCATION)
         assert actual_city.text == "Калининград", f"City is not corrected, {actual_city.text}"
 
-    def open_favorite_list_from_main_page(self):
-        self.browser.execute_script(f"$({MainPageLocators.FAVORITE_ICON_BUTTON}).click()")
-
     def favorite_list_is_empty(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(MainPageLocators.TEXT_EMPTY_FAV_LIST))
-
-        text_in_empty_favorite_list = self.browser.find_element(*MainPageLocators.TEXT_EMPTY_FAV_LIST)
-        assert text_in_empty_favorite_list.text == 'В избранном пока ничего нет', \
-            f"Favorite list is not empty!, {text_in_empty_favorite_list.text}"
-
-        amount_favorite_on_button = self.browser.find_element(*MainPageLocators.AMOUNT_WISHLIST)
-        assert amount_favorite_on_button.text == '', \
-            f"Favorite list is not empty, sorry, {amount_favorite_on_button.text}"
+        wait.until_not(EC.presence_of_element_located(MainPageLocators.FAVORITE_ICON_BUTTON))

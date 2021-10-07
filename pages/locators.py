@@ -7,12 +7,12 @@ class BasePageLocators:
 
 
 class MainPageLocators(BasePageLocators):
-    LOCATION = (By.CSS_SELECTOR, "#header-city-selection-link .header-top-line__link-text")
-    CITY_INPUT = (By.CSS_SELECTOR, "#region-selection-form-city-input")
-    GIVEN_CITY = (By.CSS_SELECTOR, ".city-selection-popup-results a")
+    LOCATION = (By.CSS_SELECTOR, ".location .location-text")
+    # LOCATION_SELECTED = (By.CSS_SELECTOR, "#header-city-selection-link .header-top-line__link-text")
+    CITY_INPUT = (By.CSS_SELECTOR, ".location-select__input-wrap input[placeholder=\"Ваш город\"]")
+    GIVEN_CITY = (By.CSS_SELECTOR, ".location-selection__container .location-select__location")
     FAVORITE_ICON_BUTTON = (By.CSS_SELECTOR, ".header-icon__icon .i-icon-fl-favorite")
-    TEXT_EMPTY_FAV_LIST = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
-    AMOUNT_WISHLIST = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
+    FAVORITE_ICON = (By.CSS_SELECTOR, ".tab-personal .bubble")
 
 
 class LoginPageLocators(BasePageLocators):
@@ -38,8 +38,7 @@ class ProductPageLocators(BasePageLocators):
     ACTIVE_FAVORITE_ICON = (By.CSS_SELECTOR, ".review-share .mv-icon-button--active")
     FAVORITE_ICON_EMPTY = (By.CSS_SELECTOR, ".tab-personal .disabled")
     OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".tab-personal mvid-icon[type='love']")
-    CLOSE_AD = (By.CSS_SELECTOR, ".modal-layout__close")
-    AMOUNT_WISHLIST = MainPageLocators.AMOUNT_WISHLIST
+    AMOUNT_WISHLIST = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
     EMPTY_WISH_LIST = (By.CSS_SELECTOR, ".header-main__icon_wish.header-icon_disabled")
     ICON_ADD_TO_FAVORITE_AUTH_USER = (By.CSS_SELECTOR, ".c-pdp-add-wishlist .c-blinking-text__unchecked")
 
