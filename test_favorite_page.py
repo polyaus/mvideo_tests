@@ -119,15 +119,15 @@ class TestUserCases:
         login_page = LoginPage(self.browser, LOGIN_PAGE_URL)
         login_page.open_user_cabinet()
         login_page.user_logout()
-        login_page.check_user_is_not_authorization()
+        login_page.check_user_is_not_logged()
 
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
         favorite_page.delete_all_products_from_favorites()
         favorite_page.favorites_is_empty()
 
         login_page = LoginPage(self.browser, LOGIN_PAGE_URL)
-        login_page.enter_user_data_for_authorization()
-        login_page.check_user_is_authorization()
+        login_page.enter_user_data_in_authorization_form()
+        login_page.check_user_is_logged()
 
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
         favorite_page.delete_all_products_from_favorites()
@@ -136,7 +136,7 @@ class TestUserCases:
         login_page = LoginPage(self.browser, LOGIN_PAGE_URL)
         login_page.open_user_cabinet()
         login_page.user_logout()
-        login_page.check_user_is_not_authorization()
+        login_page.check_user_is_not_logged()
 
     def test_authorization_after_add_one_product_in_favorite_list(self, product_page_url, login_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
@@ -145,21 +145,21 @@ class TestUserCases:
         product_page.in_favorite_list_one_product()
 
         login_page = LoginPage(self.browser, login_page_url)
-        login_page.open_form_authorization()
-        login_page.enter_user_data_for_authorization()
-        login_page.check_user_is_authorization()
-        login_page.check_product_in_favorite_from_login_page()
+        login_page.open_authorization_form()
+        login_page.enter_user_data_in_authorization_form()
+        login_page.check_user_is_logged()
+        login_page.check_one_product_in_favorites_user_logged()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
         favorite_page.check_one_product_in_favorites()
 
     def test_add_product_to_favorite_is_not_visible_outside(self, login_page_url, product_page_url, favorite_page_url):
         login_page = LoginPage(self.browser, login_page_url)
-        login_page.open_form_authorization()
-        login_page.enter_user_data_for_authorization()
+        login_page.open_authorization_form()
+        login_page.enter_user_data_in_authorization_form()
         login_page.open_user_cabinet()
-        login_page.check_user_is_authorization()
-        login_page.favorite_is_empty_from_login_page()
+        login_page.check_user_is_logged()
+        login_page.favorites_is_empty_user_logged()
 
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorite_is_empty()
@@ -171,10 +171,10 @@ class TestUserCases:
 
         login_page = LoginPage(self.browser, login_page_url)
         login_page.open_user_cabinet()
-        login_page.check_product_in_favorite_from_login_page()
+        login_page.check_one_product_in_favorites_user_logged()
         login_page.user_logout()
-        login_page.check_user_is_not_authorization()
-        login_page.favorite_is_empty_from_login_page_logout()
+        login_page.check_user_is_not_logged()
+        login_page.favorites_is_empty_user_logout()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
         favorite_page.favorites_is_empty()
@@ -186,10 +186,10 @@ class TestUserCases:
         product_page.in_favorite_list_one_product()
 
         login_page = LoginPage(self.browser, login_page_url)
-        login_page.open_form_authorization()
-        login_page.enter_user_data_for_authorization()
-        login_page.check_user_is_authorization()
-        login_page.check_product_in_favorite_from_login_page()
+        login_page.open_authorization_form()
+        login_page.enter_user_data_in_authorization_form()
+        login_page.check_user_is_logged()
+        login_page.check_one_product_in_favorites_user_logged()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
         favorite_page.check_one_product_in_favorites()
@@ -204,7 +204,7 @@ class TestUserCases:
 
         login_page = LoginPage(self.browser, login_page_url)
         login_page.open_user_cabinet()
-        login_page.check_two_products_in_favorite_from_login_page()
+        login_page.check_two_products_in_favorites_user_logged()
         login_page.user_logout()
-        login_page.check_user_is_not_authorization()
-        login_page.favorite_is_empty_from_login_page_logout()
+        login_page.check_user_is_not_logged()
+        login_page.favorites_is_empty_user_logout()

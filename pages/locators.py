@@ -17,18 +17,18 @@ class MainPageLocators(BasePageLocators):
 
 class LoginPageLocators(BasePageLocators):
     LOGIN = (By.CSS_SELECTOR, ".header-main .header-icon_default .i-icon-fl-profile")
-    USER = (By.CSS_SELECTOR, ".tab-profile .title")
+    USER_CABINET = (By.CSS_SELECTOR, ".tab-profile .title")
     USERNAME = (By.CSS_SELECTOR, ".tooltip--visible .menu .tooltip__menu-link")
     LOGOUT = (By.CSS_SELECTOR, ".tooltipster-sidetip-profile .header-user__actions a[data-holder='#signout']")
-    ENTER_WITH_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".o-login__login .c-link[data-holder=\"#useEmailToEnter\"]")
+    LOGIN_WITH_PASSWORD = (By.CSS_SELECTOR, ".o-login__login .c-link[data-holder=\"#useEmailToEnter\"]")
     TELEPHONE = (By.CSS_SELECTOR, "#login-original")
     PASSWORD = (By.CSS_SELECTOR, "#login_password")
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, "#submit-button")
+    ENTER_BTN = (By.CSS_SELECTOR, "#submit-button")
     CABINET_HEAD = (By.CSS_SELECTOR, ".main-holder h1")
-    TEXT_ON_BUTTON_ENTER = (By.CSS_SELECTOR, ".header-icon .header-icon__text")
-    COUNT_PROD_IN_FAV_FROM_LP_UP = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
-    COUNT_PROD_IN_FAV_FROM_LP_DOWN = (By.CSS_SELECTOR, ".my-account-wishlist .label-amount")
-    EMPTY_WISH_LIST = (By.CSS_SELECTOR, ".header-main__icon_wish.header-icon_disabled")
+    USER_ENTER = (By.CSS_SELECTOR, ".header-icon .header-icon__text")
+    FAVORITES_HEADER = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
+    FAVORITES_FOOTER = (By.CSS_SELECTOR, ".my-account-wishlist .label-amount")
+    EMPTY_FAVORITES_HEADER = (By.CSS_SELECTOR, ".header-main__icon_wish.header-icon_disabled")
 
 
 class ProductPageLocators(BasePageLocators):
