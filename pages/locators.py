@@ -44,9 +44,9 @@ class ProductPageLocators(BasePageLocators):
 
 
 class FavoritePageLocators(BasePageLocators):
-    TEXT_EMPTY_FAVORITE_LIST = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
-    TITLE_SELECTED = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-title")
-    NAME_PRODUCT_IN_FAV = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-item .wishlist-product-title a")
-    COUNT_PRODUCTS_IN_FAV = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
-    DELETE_FROM_FAV_PRODUCT = (By.CSS_SELECTOR, ".wishlist-action-links .wishlist-delete-btn .i-icon-fl-trash")
-    TEXT_AFTER_DELETE = (By.CSS_SELECTOR, ".c-notifications .c-notifications__title")
+    EMPTY_FAVORITES = (By.CSS_SELECTOR, ".whishlist-empty .whishlist-empty__title")
+    FAVORITES = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-title")
+    NAME_PRODUCT = (By.CSS_SELECTOR, ".wishlist-items-container .wishlist-item .wishlist-product-title a")
+    COUNT_IN_FAVORITES = (By.CSS_SELECTOR, ".wishlist-topline .wishlist-quantity")
+    DELETE_FAVORITES_BTN = (By.CSS_SELECTOR, ".wishlist-action-links .wishlist-delete-btn .i-icon-fl-trash")
+    EMPTY_FAVORITES_AFTER_DELETE = (By.CSS_SELECTOR, ".c-notifications .c-notifications__title")

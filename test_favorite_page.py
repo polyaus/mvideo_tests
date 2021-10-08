@@ -18,13 +18,13 @@ class TestsWithoutLogin:
 
     def teardown_method(self, method):
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
-        favorite_page.delete_all_products_from_favorite_list()
+        favorite_page.delete_all_products_from_favorites()
         favorite_page.open()
-        favorite_page.favorite_list_is_empty_from_favorite_list()
+        favorite_page.favorites_is_empty()
 
-    def test_favorite_list_is_empty_from_favorite_list(self, favorite_page_url):
+    def test_favorite_list_is_empty(self, favorite_page_url):
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.favorite_list_is_empty_from_favorite_list()
+        favorite_page.favorites_is_empty()
 
     def test_add_product_to_fav(self, product_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
@@ -33,7 +33,7 @@ class TestsWithoutLogin:
         product_page.in_favorite_list_one_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
+        favorite_page.check_one_product_in_favorites()
 
     def test_favorite_list_is_not_empty(self, product_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
@@ -42,7 +42,7 @@ class TestsWithoutLogin:
         product_page.in_favorite_list_one_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.favorite_list_is_not_empty()
+        favorite_page.favorites_is_not_empty()
 
     def test_delete_product_from_favorite_list(self, product_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
@@ -51,9 +51,9 @@ class TestsWithoutLogin:
         product_page.in_favorite_list_one_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
-        favorite_page.delete_product_from_favorite_list()
-        favorite_page.favorite_list_is_empty_after_delete_product()
+        favorite_page.check_one_product_in_favorites()
+        favorite_page.delete_one_product_from_favorites()
+        favorite_page.favorites_is_empty_after_delete_products()
 
     def test_add_two_product_in_favorite_list(self, product_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
@@ -62,13 +62,13 @@ class TestsWithoutLogin:
         product_page.in_favorite_list_one_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
+        favorite_page.check_one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
         product_page_2.add_favorite_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_two_products_in_favorite_list()
+        favorite_page.check_two_products_in_favorites()
 
     def test_delete_first_added_product_from_favorite_list(self, product_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
@@ -77,14 +77,14 @@ class TestsWithoutLogin:
         product_page.in_favorite_list_one_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
+        favorite_page.check_one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
         product_page_2.add_favorite_product()
         product_page_2.in_favorite_list_two_products()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.delete_first_added_product_from_favorite_list()
+        favorite_page.delete_first_added_product_in_favorites()
 
     def test_delete_all_two_products_from_favorite_list(self, product_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
@@ -93,16 +93,16 @@ class TestsWithoutLogin:
         product_page.in_favorite_list_one_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
+        favorite_page.check_one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
         product_page_2.add_favorite_product()
         product_page_2.in_favorite_list_two_products()
 
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
-        favorite_page.check_two_products_in_favorite_list()
-        favorite_page.delete_all_products_from_favorite_list()
-        favorite_page.favorite_list_is_empty_after_delete_product()
+        favorite_page.check_two_products_in_favorites()
+        favorite_page.delete_all_products_from_favorites()
+        favorite_page.favorites_is_empty_after_delete_products()
 
 
 class TestUserCases:
@@ -122,16 +122,16 @@ class TestUserCases:
         login_page.check_user_is_not_authorization()
 
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
-        favorite_page.delete_all_products_from_favorite_list()
-        favorite_page.favorite_list_is_empty_from_favorite_list()
+        favorite_page.delete_all_products_from_favorites()
+        favorite_page.favorites_is_empty()
 
         login_page = LoginPage(self.browser, LOGIN_PAGE_URL)
         login_page.enter_user_data_for_authorization()
         login_page.check_user_is_authorization()
 
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
-        favorite_page.delete_all_products_from_favorite_list()
-        favorite_page.favorite_list_is_empty_after_delete_product()
+        favorite_page.delete_all_products_from_favorites()
+        favorite_page.favorites_is_empty_after_delete_products()
 
         login_page = LoginPage(self.browser, LOGIN_PAGE_URL)
         login_page.open_user_cabinet()
@@ -151,7 +151,7 @@ class TestUserCases:
         login_page.check_product_in_favorite_from_login_page()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
+        favorite_page.check_one_product_in_favorites()
 
     def test_add_product_to_favorite_is_not_visible_outside(self, login_page_url, product_page_url, favorite_page_url):
         login_page = LoginPage(self.browser, login_page_url)
@@ -167,7 +167,7 @@ class TestUserCases:
         product_page.in_favorite_list_one_product()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
+        favorite_page.check_one_product_in_favorites()
 
         login_page = LoginPage(self.browser, login_page_url)
         login_page.open_user_cabinet()
@@ -177,7 +177,7 @@ class TestUserCases:
         login_page.favorite_is_empty_from_login_page_logout()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.favorite_list_is_empty_from_favorite_list()
+        favorite_page.favorites_is_empty()
 
     def test_add_two_products_to_favorite_auth_user(self, product_page_url, login_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
@@ -192,7 +192,7 @@ class TestUserCases:
         login_page.check_product_in_favorite_from_login_page()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_product_in_favorite_list()
+        favorite_page.check_one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
         product_page_2.in_favorite_list_one_product()
@@ -200,7 +200,7 @@ class TestUserCases:
         product_page_2.in_favorite_list_two_products()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
-        favorite_page.check_two_products_in_favorite_list()
+        favorite_page.check_two_products_in_favorites()
 
         login_page = LoginPage(self.browser, login_page_url)
         login_page.open_user_cabinet()
