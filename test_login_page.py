@@ -11,7 +11,7 @@ class TestsFromLoginPage:
     def teardown_class(cls):
         cls.browser.quit()
 
-    def test_user_auth(self, login_page_url):
+    def test_user_logged(self, login_page_url):
         login_page = LoginPage(self.browser, login_page_url)
         login_page.open_authorization_form()
         login_page.enter_user_data_in_authorization_form()
