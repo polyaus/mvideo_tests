@@ -32,15 +32,15 @@ class LoginPageLocators(BasePageLocators):
 
 
 class ProductPageLocators(BasePageLocators):
-    ICON_ADD_TO_FAVORITE = (By.CSS_SELECTOR, ".review-share .share mvid-icon[type='love']")
-    FAVORITE_ICON = (By.CSS_SELECTOR, ".tab-personal .bubble")
+    PRODUCT_ADD_TO_FAVORITES = (By.CSS_SELECTOR, ".review-share .share mvid-icon[type='love']")
+    FAVORITES_ICON_TOP = (By.CSS_SELECTOR, ".tab-personal .bubble")
     FAVORITE_ICON_ANIMATED = (By.CSS_SELECTOR, ".tab-personal .bubble.animated")
-    ACTIVE_FAVORITE_ICON = (By.CSS_SELECTOR, ".review-share .mv-icon-button--active")
-    FAVORITE_ICON_EMPTY = (By.CSS_SELECTOR, ".tab-personal .disabled")
+    ACTIVE_BTN_ADD_TO_FAVORITES = (By.CSS_SELECTOR, ".review-share .mv-icon-button--active")
+    EMPTY_FAVORITES = (By.CSS_SELECTOR, ".tab-personal .disabled")
     OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".tab-personal mvid-icon[type='love']")
-    AMOUNT_WISHLIST = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
+    AMOUNT_FAVORITES = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
     EMPTY_WISH_LIST = (By.CSS_SELECTOR, ".header-main__icon_wish.header-icon_disabled")
-    ICON_ADD_TO_FAVORITE_AUTH_USER = (By.CSS_SELECTOR, ".c-pdp-add-wishlist .c-blinking-text__unchecked")
+    PRODUCT_ADD_TO_FAVORITES_LOGGED_USER = (By.CSS_SELECTOR, ".c-pdp-add-wishlist .c-blinking-text__unchecked")
 
 
 class FavoritePageLocators(BasePageLocators):
