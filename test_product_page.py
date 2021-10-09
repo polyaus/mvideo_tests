@@ -30,23 +30,23 @@ class TestsForProductPage:
     def test_one_product_in_favorites(self, product_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
     def test_two_products_in_favorites(self, product_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
-        product_page_2.add_product_in_favorites()
+        product_page_2.add_product_to_favorites()
         product_page_2.two_products_in_favorites()
 
     def test_delete_one_product_from_favorites(self, product_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
         product_page.click_body()
         product_page.del_product_from_favorites()
@@ -55,11 +55,11 @@ class TestsForProductPage:
     def test_delete_two_products_from_favorites(self, product_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
-        product_page_2.add_product_in_favorites()
+        product_page_2.add_product_to_favorites()
         product_page_2.two_products_in_favorites()
 
         product_page = ProductPage(self.browser, product_page_url)

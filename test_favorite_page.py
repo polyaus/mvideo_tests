@@ -29,7 +29,7 @@ class TestsWithoutLogin:
     def test_add_product_to_favorites(self, product_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
@@ -38,7 +38,7 @@ class TestsWithoutLogin:
     def test_favorites_is_not_empty(self, product_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
@@ -47,7 +47,7 @@ class TestsWithoutLogin:
     def test_delete_one_product_from_favorites(self, product_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
@@ -58,14 +58,14 @@ class TestsWithoutLogin:
     def test_add_two_products_in_favorites(self, product_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
         favorite_page.check_one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
-        product_page_2.add_product_in_favorites()
+        product_page_2.add_product_to_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
         favorite_page.check_two_products_in_favorites()
@@ -73,14 +73,14 @@ class TestsWithoutLogin:
     def test_delete_first_added_product_from_favorites(self, product_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
         favorite_page.check_one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
-        product_page_2.add_product_in_favorites()
+        product_page_2.add_product_to_favorites()
         product_page_2.two_products_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
@@ -89,14 +89,14 @@ class TestsWithoutLogin:
     def test_delete_all_two_products_from_favorites(self, product_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
         favorite_page.check_one_product_in_favorites()
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
-        product_page_2.add_product_in_favorites()
+        product_page_2.add_product_to_favorites()
         product_page_2.two_products_in_favorites()
 
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
@@ -141,7 +141,7 @@ class TestUserCases:
     def test_login_after_add_one_product_in_favorites(self, product_page_url, login_page_url, favorite_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         login_page = LoginPage(self.browser, login_page_url)
@@ -163,7 +163,7 @@ class TestUserCases:
 
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)
@@ -182,7 +182,7 @@ class TestUserCases:
     def test_add_two_products_to_favorites_logged_user(self, product_page_url, login_page_url, favorite_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
-        product_page.add_product_in_favorites()
+        product_page.add_product_to_favorites()
         product_page.one_product_in_favorites()
 
         login_page = LoginPage(self.browser, login_page_url)
@@ -196,7 +196,7 @@ class TestUserCases:
 
         product_page_2 = ProductPage(self.browser, product_page_url_2)
         product_page_2.one_product_in_favorites()
-        product_page_2.add_product_in_favorites()
+        product_page_2.add_product_to_favorites()
         product_page_2.two_products_in_favorites()
 
         favorite_page = FavoritePage(self.browser, favorite_page_url)

@@ -8,7 +8,7 @@ from pages.locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    def add_product_in_favorites(self):
+    def add_product_to_favorites(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(ProductPageLocators.PRODUCT_ADD_TO_FAVORITES))
 
@@ -30,7 +30,7 @@ class ProductPage(BasePage):
         except NoSuchElementException:
             return
         else:
-            self.add_product_in_favorites()
+            self.add_product_to_favorites()
 
     def favorites_is_empty(self):
         wait = WebDriverWait(self.browser, 10)

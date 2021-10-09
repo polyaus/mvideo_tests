@@ -24,27 +24,27 @@ class FavoritePage(BasePage):
         assert name_product.text == 'Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)', \
             f"Product is not in favorites, {name_product.text}"
 
-        count_in_favorites = self.browser.find_element(*FavoritePageLocators.COUNT_IN_FAVORITES)
-        assert int(count_in_favorites.text) == 1, \
-            f"Favorites has more or less one product, {count_in_favorites.text}"
+        favorites_count = self.browser.find_element(*FavoritePageLocators.COUNT_IN_FAVORITES)
+        assert int(favorites_count.text) == 1, \
+            f"Favorites has more or less one product, {favorites_count.text}"
 
     def check_two_products_in_favorites(self):
-        count_in_favorites = self.browser.find_element(*FavoritePageLocators.COUNT_IN_FAVORITES)
-        assert int(count_in_favorites.text) == 2, \
-            f"Favorites has more or less one product, {count_in_favorites.text}"
+        favorites_count = self.browser.find_element(*FavoritePageLocators.COUNT_IN_FAVORITES)
+        assert int(favorites_count.text) == 2, \
+            f"Favorites has more or less one product, {favorites_count.text}"
 
         product_names = [
             "Смартфон Xiaomi Redmi 9A 32GB Peacock Green",
             "Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)",
         ]
-        products_in_favorites = self.browser.find_elements(*FavoritePageLocators.NAME_PRODUCT)
-        assert len(products_in_favorites) == 2, f"Favorites has products not equal 2, {len(products_in_favorites)}"
-        assert products_in_favorites[0].text != products_in_favorites[1].text, \
-            f"Duplicate product names, {products_in_favorites[0].text}"
-        assert products_in_favorites[0].text in product_names, \
-            f"Wrong favorite product name, {products_in_favorites[0].text}"
-        assert products_in_favorites[1].text in product_names, \
-            f"Wrong favorite product name, {products_in_favorites[1].text}"
+        favorite_products = self.browser.find_elements(*FavoritePageLocators.NAME_PRODUCT)
+        assert len(favorite_products) == 2, f"Favorites has products not equal 2, {len(favorite_products)}"
+        assert favorite_products[0].text != favorite_products[1].text, \
+            f"Duplicate product names, {favorite_products[0].text}"
+        assert favorite_products[0].text in product_names, \
+            f"Wrong favorite product name, {favorite_products[0].text}"
+        assert favorite_products[1].text in product_names, \
+            f"Wrong favorite product name, {favorite_products[1].text}"
 
     def delete_one_product_from_favorites(self):
         wait = WebDriverWait(self.browser, 10)
