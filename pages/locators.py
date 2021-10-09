@@ -38,9 +38,7 @@ class ProductPageLocators(BasePageLocators):
     ACTIVE_BTN_ADD_TO_FAVORITES = (By.CSS_SELECTOR, ".review-share .mv-icon-button--active")
     EMPTY_FAVORITES = (By.CSS_SELECTOR, ".tab-personal .disabled")
     OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".tab-personal mvid-icon[type='love']")
-    AMOUNT_FAVORITES = (By.CSS_SELECTOR, ".header-main__icon_wish .wishlist-amount")
     EMPTY_WISH_LIST = (By.CSS_SELECTOR, ".header-main__icon_wish.header-icon_disabled")
-    PRODUCT_ADD_TO_FAVORITES_LOGGED_USER = (By.CSS_SELECTOR, ".c-pdp-add-wishlist .c-blinking-text__unchecked")
 
 
 class FavoritePageLocators(BasePageLocators):

@@ -15,10 +15,6 @@ class ProductPage(BasePage):
         add_to_favorites = self.browser.find_element(*ProductPageLocators.PRODUCT_ADD_TO_FAVORITES)
         add_to_favorites.click()
 
-    def add_product_to_favorites_logged_user(self):
-        icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.PRODUCT_ADD_TO_FAVORITES_LOGGED_USER)
-        icon_add_to_favorite.click()
-
     def del_product_from_favorites(self):
         body = self.browser.find_element(*ProductPageLocators.BODY)
         action = ActionChains(self.browser)
@@ -44,13 +40,6 @@ class ProductPage(BasePage):
 
         favorites_icon_top = self.browser.find_element(*ProductPageLocators.FAVORITES_ICON_TOP)
         assert int(favorites_icon_top.text) == 1, f"Favorites has less or more one product, {favorites_icon_top.text}"
-
-    def one_product_in_favorites_logged_user(self):
-        wait = WebDriverWait(self.browser, 10)
-        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITES_ICON_TOP))
-
-        favorite_icon_top = self.browser.find_element(*ProductPageLocators.AMOUNT_FAVORITES)
-        assert int(favorite_icon_top.text) == 1, f"Favorites has less or more one product, {favorite_icon_top.text}"
 
     def two_products_in_favorites(self):
         wait = WebDriverWait(self.browser, 10)
