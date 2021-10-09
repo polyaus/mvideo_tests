@@ -23,17 +23,17 @@ class TestsForProductPage:
 
         product_page_2.favorites_is_empty()
 
-    def test_favorite_list_is_empty(self, product_page_url):
+    def test_favorites_is_empty(self, product_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
 
-    def test_product_in_favorite_list(self, product_page_url):
+    def test_one_product_in_favorites(self, product_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
         product_page.add_product_in_favorites()
         product_page.one_product_in_favorites()
 
-    def test_two_product_in_favorite_list(self, product_page_url, product_page_url_2):
+    def test_two_products_in_favorites(self, product_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
         product_page.add_product_in_favorites()
@@ -43,7 +43,7 @@ class TestsForProductPage:
         product_page_2.add_product_in_favorites()
         product_page_2.two_products_in_favorites()
 
-    def test_delete_product_from_favorite_list_on_product_page(self, product_page_url):
+    def test_delete_one_product_from_favorites(self, product_page_url):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
         product_page.add_product_in_favorites()
@@ -52,7 +52,7 @@ class TestsForProductPage:
         product_page.del_product_from_favorites()
         product_page.favorites_is_empty()
 
-    def test_delete_two_product_from_favorite_list_on_product_page(self, product_page_url, product_page_url_2):
+    def test_delete_two_products_from_favorites(self, product_page_url, product_page_url_2):
         product_page = ProductPage(self.browser, product_page_url)
         product_page.favorites_is_empty()
         product_page.add_product_in_favorites()
