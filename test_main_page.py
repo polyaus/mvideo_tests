@@ -20,4 +20,4 @@ class TestsFromMainPage:
 
     def test_favorite_list_is_empty(self, main_page_url):
         main_page = MainPage(self.browser, main_page_url)
-        main_page.favorite_list_is_empty()
+        main_page.favorites_is_empty()

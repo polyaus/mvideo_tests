@@ -9,9 +9,9 @@ class BasePageLocators:
 class MainPageLocators(BasePageLocators):
     LOCATION = (By.CSS_SELECTOR, ".location .location-text")
     # LOCATION_SELECTED = (By.CSS_SELECTOR, "#header-city-selection-link .header-top-line__link-text")
-    CITY_INPUT = (By.CSS_SELECTOR, ".location-select__input-wrap input[placeholder=\"Ваш город\"]")
-    GIVEN_CITY = (By.CSS_SELECTOR, ".location-selection__container .location-select__location")
-    FAVORITE_ICON_BUTTON = (By.CSS_SELECTOR, ".header-icon__icon .i-icon-fl-favorite")
+    INPUT_CITY = (By.CSS_SELECTOR, ".location-select__input-wrap input[placeholder=\"Ваш город\"]")
+    LIST_CITIES = (By.CSS_SELECTOR, ".location-selection__container .location-select__location")
+    FAVORITES_ICON = (By.CSS_SELECTOR, ".header-icon__icon .i-icon-fl-favorite")
     FAVORITE_ICON = (By.CSS_SELECTOR, ".tab-personal .bubble")
 
 
