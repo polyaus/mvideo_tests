@@ -18,6 +18,6 @@ class TestsFromMainPage:
         main_page.change_location_to_kaliningrad()
         main_page.check_location_is_kaliningrad()
 
-    def test_favorite_list_is_empty(self, main_page_url):
+    def test_favorites_is_empty(self, main_page_url):
         main_page = MainPage(self.browser, main_page_url)
         main_page.favorites_is_empty()
