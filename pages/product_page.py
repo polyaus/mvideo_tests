@@ -8,53 +8,42 @@ from pages.locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    def add_favorite_product(self):
+    def add_product_to_favorites(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(ProductPageLocators.ICON_ADD_TO_FAVORITE))
+        wait.until(EC.presence_of_element_located(ProductPageLocators.PRODUCT_ADD_TO_FAVORITES))
 
-        icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE)
-        icon_add_to_favorite.click()
+        add_to_favorites = self.browser.find_element(*ProductPageLocators.PRODUCT_ADD_TO_FAVORITES)
+        add_to_favorites.click()
 
-    def add_favorite_product_authorizated_user(self):
-        icon_add_to_favorite = self.browser.find_element(*ProductPageLocators.ICON_ADD_TO_FAVORITE_AUTH_USER)
-        icon_add_to_favorite.click()
-
-    def del_favorite_product(self):
+    def del_product_from_favorites(self):
         body = self.browser.find_element(*ProductPageLocators.BODY)
         action = ActionChains(self.browser)
         action.move_to_element(body).perform()
         body.click()
 
         try:
-            active_fav_button = self.browser.find_element(*ProductPageLocators.ACTIVE_FAVORITE_ICON)
+            self.browser.find_element(*ProductPageLocators.ACTIVE_BTN_ADD_TO_FAVORITES)
         except NoSuchElementException:
             return
         else:
-            self.add_favorite_product()
+            self.add_product_to_favorites()
 
-    def favorite_is_empty(self):
+    def favorites_is_empty(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_EMPTY))
+        wait.until(EC.presence_of_element_located(ProductPageLocators.EMPTY_FAVORITES))
 
-        assert self.is_not_element_present(*ProductPageLocators.FAVORITE_ICON), "Favorite list is not empty"
+        assert self.is_not_element_present(*ProductPageLocators.FAVORITES_ICON_TOP), "Favorites is not empty"
 
-    def in_favorite_list_one_product(self):
+    def one_product_in_favorites(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
+        wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITES_ICON_TOP))
 
-        favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
-        assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
+        favorites_icon_top = self.browser.find_element(*ProductPageLocators.FAVORITES_ICON_TOP)
+        assert int(favorites_icon_top.text) == 1, f"Favorites has less or more one product, {favorites_icon_top.text}"
 
-    def in_favorite_list_one_product_authorizated_user(self):
-        wait = WebDriverWait(self.browser, 10)
-        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON))
-
-        favorite_icon = self.browser.find_element(*ProductPageLocators.AMOUNT_WISHLIST)
-        assert int(favorite_icon.text) == 1, f"Product is not added in favorite list, {favorite_icon.text}"
-
-    def in_favorite_list_two_products(self):
+    def two_products_in_favorites(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_ANIMATED))
 
-        favorite_icon = self.browser.find_element(*ProductPageLocators.FAVORITE_ICON)
-        assert int(favorite_icon.text) == 2, f"Product is not added in favorite list, {favorite_icon.text}"
+        favorite_icon_top = self.browser.find_element(*ProductPageLocators.FAVORITES_ICON_TOP)
+        assert int(favorite_icon_top.text) == 2, f"Favorites has less or more two product, {favorite_icon_top.text}"

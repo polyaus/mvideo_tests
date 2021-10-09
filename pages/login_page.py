@@ -8,91 +8,89 @@ from pages.locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
-    def open_form_authorization(self):
+    def open_authorization_form(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON))
+        wait.until(EC.presence_of_element_located(LoginPageLocators.LOGIN_WITH_PASSWORD))
 
-        change_enter_button = self.browser.find_element(*LoginPageLocators.ENTER_WITH_PASSWORD_BUTTON)
-        if change_enter_button.text == "Войти с помощью пароля":
-            change_enter_button.click()
+        login_with_password = self.browser.find_element(*LoginPageLocators.LOGIN_WITH_PASSWORD)
+        if login_with_password.text == "Войти с помощью пароля":
+            login_with_password.click()
 
-    def enter_user_data_for_authorization(self):
+    def enter_user_data_in_authorization_form(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(LoginPageLocators.PASSWORD))
 
-        telephone_field = self.browser.find_element(*LoginPageLocators.TELEPHONE)
-        telephone_field.send_keys("79220344446")
+        telephone = self.browser.find_element(*LoginPageLocators.TELEPHONE)
+        telephone.send_keys("79220344446")
 
-        password_field = self.browser.find_element(*LoginPageLocators.PASSWORD)
-        password_field.send_keys("1232345Arc")
+        password = self.browser.find_element(*LoginPageLocators.PASSWORD)
+        password.send_keys("1232345Arc")
 
-        submit_button = self.browser.find_element(*LoginPageLocators.SUBMIT_BUTTON)
-        submit_button.click()
+        enter_btn = self.browser.find_element(*LoginPageLocators.ENTER_BTN)
+        enter_btn.click()
 
     def open_user_cabinet(self):
-        enter_login_cabinet = self.browser.find_element(*LoginPageLocators.LOGIN)
-        enter_login_cabinet.click()
+        user_cabinet = self.browser.find_element(*LoginPageLocators.LOGIN)
+        user_cabinet.click()
 
-    def open_user_cabinet_after_add_to_favorite_product(self):
-        icon_login_cabinet = self.browser.find_element(*LoginPageLocators.USER)
+    def open_user_cabinet_with_not_empty_favorites(self):
+        user_cabinet = self.browser.find_element(*LoginPageLocators.USER_CABINET)
         action = ActionChains(self.browser)
-        action.move_to_element(icon_login_cabinet).perform()
+        action.move_to_element(user_cabinet).perform()
 
-        enter_login_cabinet = self.browser.find_element(*LoginPageLocators.USERNAME)
+        username = self.browser.find_element(*LoginPageLocators.USERNAME)
         action = ActionChains(self.browser)
-        action.move_to_element(enter_login_cabinet).perform()
-        enter_login_cabinet.click()
+        action.move_to_element(username).perform()
+        username.click()
 
-    def check_user_is_authorization(self):
+    def check_user_is_logged(self):
         cabinet_head = self.browser.find_element(*LoginPageLocators.CABINET_HEAD)
-        assert cabinet_head.text == "Личный кабинет", f"User is not authorized, {cabinet_head.text}"
+        assert cabinet_head.text == "Личный кабинет", f"User is not logged, {cabinet_head.text}"
 
     def user_logout(self):
         try:
-            self.check_user_is_authorization()
+            self.check_user_is_logged()
         except NoSuchElementException:
             return
 
-        user_logout_menu = self.browser.find_element(*LoginPageLocators.LOGIN)
+        user_cabinet = self.browser.find_element(*LoginPageLocators.LOGIN)
         action = ActionChains(self.browser)
-        action.move_to_element(user_logout_menu).perform()
+        action.move_to_element(user_cabinet).perform()
 
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(LoginPageLocators.LOGOUT))
 
-        user_logout = self.browser.find_element(*LoginPageLocators.LOGOUT)
-        user_logout.click()
+        logout_btn = self.browser.find_element(*LoginPageLocators.LOGOUT)
+        logout_btn.click()
 
-    def check_user_is_not_authorization(self):
-        text_on_button_enter = self.browser.find_elements(*LoginPageLocators.TEXT_ON_BUTTON_ENTER)
-        assert text_on_button_enter[1].text == "Войти", f"User is in login cabinet, {text_on_button_enter[1].text}"
+    def check_user_is_not_logged(self):
+        user_cabinet = self.browser.find_elements(*LoginPageLocators.USER_ENTER)
+        assert user_cabinet[1].text == "Войти", f"User is in login cabinet, {user_cabinet[1].text}"
 
-    def favorite_is_empty_from_login_page(self):
-        count_fav_products_up = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP)
-        assert count_fav_products_up.text == '', f"Favorite list is not empty, {count_fav_products_up.text}"
+    def favorites_is_empty_user_logged(self):
+        favorites_header = self.browser.find_element(*LoginPageLocators.FAVORITES_HEADER)
+        assert favorites_header.text == '', f"Favorites is not empty, {favorites_header.text}"
 
-        count_fav_products_down = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_DOWN)
-        assert int(count_fav_products_down.text) == 0, f"Favorite list is not empty, {count_fav_products_down.text}"
+        favorites_footer = self.browser.find_element(*LoginPageLocators.FAVORITES_FOOTER)
+        assert int(favorites_footer.text) == 0, f"Favorites is not empty, {favorites_footer.text}"
 
-    def check_product_in_favorite_from_login_page(self):
+    def check_one_product_in_favorites_user_logged(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_DOWN))
+        wait.until(EC.presence_of_element_located(LoginPageLocators.FAVORITES_FOOTER))
 
-        count_fav_products_up = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP)
-        assert int(count_fav_products_up.text) == 1, f"Favorite list has no one product, {count_fav_products_up.text}"
+        favorites_header = self.browser.find_element(*LoginPageLocators.FAVORITES_HEADER)
+        assert int(favorites_header.text) == 1, f"Favorites has no one product, {favorites_header.text}"
 
-        count_fav_products_down = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_DOWN)
-        assert int(count_fav_products_down.text) == 1, \
-            f"Favorite list has no one product, {count_fav_products_down.text}"
+        favorites_footer = self.browser.find_element(*LoginPageLocators.FAVORITES_FOOTER)
+        assert int(favorites_footer.text) == 1, f"Favorites has no one product, {favorites_footer.text}"
 
-    def check_two_products_in_favorite_from_login_page(self):
-        count_fav_products_up = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_UP)
-        assert int(count_fav_products_up.text) == 2, f"Favorite list has no one product, {count_fav_products_up.text}"
+    def check_two_products_in_favorites_user_logged(self):
+        favorites_header = self.browser.find_element(*LoginPageLocators.FAVORITES_HEADER)
+        assert int(favorites_header.text) == 2, f"Favorites has no two products, {favorites_header.text}"
 
-        count_fav_products_down = self.browser.find_element(*LoginPageLocators.COUNT_PROD_IN_FAV_FROM_LP_DOWN)
-        assert int(count_fav_products_down.text) == 2, \
-            f"Favorite list has no one product, {count_fav_products_down.text}"
+        favorites_footer = self.browser.find_element(*LoginPageLocators.FAVORITES_FOOTER)
+        assert int(favorites_footer.text) == 2, f"Favorites has no two products, {favorites_footer.text}"
 
-    def favorite_is_empty_from_login_page_logout(self):
-        count_fav_products_up = self.browser.find_element(*LoginPageLocators.EMPTY_WISH_LIST)
-        assert count_fav_products_up, f"Favorite list is not empty, {count_fav_products_up.text}"
+    def favorites_is_empty_user_logout(self):
+        favorites_header = self.browser.find_element(*LoginPageLocators.EMPTY_FAVORITES_HEADER)
+        assert favorites_header, f"Favorite list is not empty, {favorites_header.text}"
