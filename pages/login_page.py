@@ -1,3 +1,5 @@
+import os
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
@@ -21,10 +23,10 @@ class LoginPage(BasePage):
         wait.until(EC.presence_of_element_located(LoginPageLocators.PASSWORD))
 
         telephone = self.browser.find_element(*LoginPageLocators.TELEPHONE)
-        telephone.send_keys("79220344446")
+        telephone.send_keys(os.environ["phone"])
 
         password = self.browser.find_element(*LoginPageLocators.PASSWORD)
-        password.send_keys("1232345Arc")
+        password.send_keys(os.environ["password"])
 
         enter_btn = self.browser.find_element(*LoginPageLocators.ENTER_BTN)
         enter_btn.click()
