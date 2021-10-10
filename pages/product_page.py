@@ -42,8 +42,9 @@ class ProductPage(BasePage):
         assert int(favorites_icon_top.text) == 1, f"Favorites has less or more one product, {favorites_icon_top.text}"
 
     def two_products_in_favorites(self):
-        wait = WebDriverWait(self.browser, 10)
-        wait.until_not(EC.presence_of_element_located(ProductPageLocators.FAVORITE_ICON_ANIMATED))
+        body = self.browser.find_element(*ProductPageLocators.BODY)
+        action = ActionChains(self.browser)
+        action.move_to_element(body).perform()
 
         favorite_icon_top = self.browser.find_element(*ProductPageLocators.FAVORITES_ICON_TOP)
         assert int(favorite_icon_top.text) == 2, f"Favorites has less or more two product, {favorite_icon_top.text}"
