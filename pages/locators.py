@@ -17,8 +17,6 @@ class MainPageLocators(BasePageLocators):
 
 class LoginPageLocators(BasePageLocators):
     LOGIN = (By.CSS_SELECTOR, ".header-main .header-icon_default .i-icon-fl-profile")
-    USER_CABINET = (By.CSS_SELECTOR, ".tab-profile .title")
-    USERNAME = (By.CSS_SELECTOR, ".tooltip--visible .menu .tooltip__menu-link")
     LOGOUT = (By.CSS_SELECTOR, ".tooltipster-sidetip-profile .header-user__actions a[data-holder='#signout']")
     LOGIN_WITH_PASSWORD = (By.CSS_SELECTOR, ".o-login__login .c-link[data-holder=\"#useEmailToEnter\"]")
     TELEPHONE = (By.CSS_SELECTOR, "#login-original")

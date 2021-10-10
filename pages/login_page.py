@@ -33,16 +33,6 @@ class LoginPage(BasePage):
         user_cabinet = self.browser.find_element(*LoginPageLocators.LOGIN)
         user_cabinet.click()
 
-    def open_user_cabinet_with_not_empty_favorites(self):
-        user_cabinet = self.browser.find_element(*LoginPageLocators.USER_CABINET)
-        action = ActionChains(self.browser)
-        action.move_to_element(user_cabinet).perform()
-
-        username = self.browser.find_element(*LoginPageLocators.USERNAME)
-        action = ActionChains(self.browser)
-        action.move_to_element(username).perform()
-        username.click()
-
     def check_user_is_logged(self):
         cabinet_head = self.browser.find_element(*LoginPageLocators.CABINET_HEAD)
         assert cabinet_head.text == "Личный кабинет", f"User is not logged, {cabinet_head.text}"
