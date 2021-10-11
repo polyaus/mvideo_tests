@@ -7,5 +7,8 @@ def build_browser():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("prefs", prefs)
     chrome_options.add_argument('--window-size=1320,1080')
+    chrome_options.addArguments("--no-sandbox");
+    chrome_options.addArguments("--disable-dev-shm-usage");
+    chrome_options.addArguments("--headless");
 
     return webdriver.Chrome(chrome_options=chrome_options)
