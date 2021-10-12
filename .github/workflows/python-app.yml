@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: browser-actions/setup-chrome@latest
+    - uses: browser-actions/setup-chrome@stable
     - uses: nanasess/setup-chromedriver@master
       with:
-        chromedriver-version: '97.0.4668.0'
+        chromedriver-version: '94.0.4606.61'
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
