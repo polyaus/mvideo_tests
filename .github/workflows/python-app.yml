@@ -15,7 +15,7 @@ jobs:
     - uses: browser-actions/setup-chrome@latest
     - uses: nanasess/setup-chromedriver@master
       with:
-        chromedriver-version: '94.0.4606.61'
+        chromedriver-version: '97.0.4668.0'
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
