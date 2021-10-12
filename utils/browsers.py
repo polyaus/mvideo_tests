@@ -2,7 +2,10 @@ from selenium import webdriver
 
 
 def build_browser():
-    prefs = {"profile.default_content_setting_values.notifications": 2}
+    prefs = {
+        "profile.default_content_setting_values.notifications": 2,
+        "safebrowsing.enabled": False,
+    }
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("prefs", prefs)
