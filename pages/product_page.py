@@ -19,7 +19,6 @@ class ProductPage(BasePage):
         body = self.browser.find_element(*ProductPageLocators.BODY)
         action = ActionChains(self.browser)
         action.move_to_element(body).perform()
-        body.click()
 
         try:
             self.browser.find_element(*ProductPageLocators.ACTIVE_BTN_ADD_TO_FAVORITES)
