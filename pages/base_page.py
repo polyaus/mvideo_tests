@@ -21,7 +21,8 @@ class BasePage:
 
     def open(self):
         time.sleep(2)
-        self.browser.get(self.url)
+        if self.url != self.browser.current_url:
+            self.browser.get(self.url)
 
     def is_element_present(self, how, what):
         try:
@@ -48,6 +49,17 @@ class BasePage:
     def close_ad(self):
         try:
             element = self.browser.find_element(*BasePageLocators.CLOSE_AD)
+        except NoSuchElementException:
+            return
+
+        element.click()
+
+    def close_check_balans(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(BasePageLocators.CLOSE_BALANS))
+
+        try:
+            element = self.browser.find_element(*BasePageLocators.CLOSE_BALANS)
         except NoSuchElementException:
             return
 

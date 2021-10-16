@@ -15,6 +15,7 @@ class TestsFromMainPage:
 
     def test_change_location_on_main_page(self, main_page_url):
         main_page = MainPage(self.browser, main_page_url)
+        main_page.close_check_balans()
         main_page.change_location_to_kaliningrad()
         main_page.check_location_is_kaliningrad()
 

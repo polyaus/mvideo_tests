@@ -18,7 +18,7 @@ class FavoritePage(BasePage):
 
     def check_one_product_in_favorites(self):
         wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(FavoritePageLocators.COUNT_IN_FAVORITES))
+        wait.until(EC.presence_of_element_located(FavoritePageLocators.NAME_PRODUCT))
 
         name_product = self.browser.find_element(*FavoritePageLocators.NAME_PRODUCT)
         assert name_product.text == 'Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)', \
