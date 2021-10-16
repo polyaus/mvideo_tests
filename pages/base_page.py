@@ -48,19 +48,19 @@ class BasePage:
 
     def close_ad(self):
         try:
-            element = self.browser.find_element(*BasePageLocators.CLOSE_AD)
+            close_ad = self.browser.find_element(*BasePageLocators.CLOSE_AD)
         except NoSuchElementException:
             return
 
-        element.click()
+        close_ad.click()
 
     def close_check_balans(self):
         wait = WebDriverWait(self.browser, 10)
         wait.until(EC.presence_of_element_located(BasePageLocators.CLOSE_BALANS))
 
         try:
-            element = self.browser.find_element(*BasePageLocators.CLOSE_BALANS)
+            close_check_balans = self.browser.find_element(*BasePageLocators.CLOSE_BALANS)
         except NoSuchElementException:
             return
 
-        element.click()
+        close_check_balans.click()
