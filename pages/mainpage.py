@@ -7,7 +7,7 @@ from pages.locators import MainPageLocators
 
 class MainPage(BasePage):
     def change_location_to_kaliningrad(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(MainPageLocators.LOCATION))
 
         locate = self.browser.find_element(*MainPageLocators.LOCATION)
@@ -27,12 +27,12 @@ class MainPage(BasePage):
                 break
 
     def check_location_is_kaliningrad(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.text_to_be_present_in_element(MainPageLocators.LOCATION, "Калининград"))
 
         actual_city = self.browser.find_element(*MainPageLocators.LOCATION)
         assert actual_city.text == "Калининград", f"City is not corrected, {actual_city.text}"
 
     def favorites_is_empty(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until_not(EC.presence_of_element_located(MainPageLocators.FAVORITES_ICON))

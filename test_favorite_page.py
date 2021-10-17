@@ -126,6 +126,7 @@ class TestUserCases:
         favorite_page.favorites_is_empty()
 
         login_page = LoginPage(self.browser, LOGIN_PAGE_URL)
+        login_page.open_authorization_form()
         login_page.enter_user_data_in_authorization_form()
         login_page.check_user_is_logged()
 
