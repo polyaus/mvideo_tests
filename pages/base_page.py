@@ -9,7 +9,7 @@ from pages.locators import BasePageLocators
 
 
 class BasePage:
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, url, timeout=5):
         self.browser = browser
         self.url = url
 
@@ -55,7 +55,7 @@ class BasePage:
         close_ad.click()
 
     def close_check_balans(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(BasePageLocators.CLOSE_BALANS))
 
         try:

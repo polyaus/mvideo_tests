@@ -11,7 +11,7 @@ from pages.locators import LoginPageLocators
 
 class LoginPage(BasePage):
     def open_authorization_form(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(LoginPageLocators.LOGIN_WITH_PASSWORD))
 
         login_with_password = self.browser.find_element(*LoginPageLocators.LOGIN_WITH_PASSWORD)
@@ -19,7 +19,7 @@ class LoginPage(BasePage):
             login_with_password.click()
 
     def enter_user_data_in_authorization_form(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(LoginPageLocators.PASSWORD))
 
         telephone = self.browser.find_element(*LoginPageLocators.TELEPHONE)
@@ -49,7 +49,7 @@ class LoginPage(BasePage):
         action = ActionChains(self.browser)
         action.move_to_element(user_cabinet).perform()
 
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(LoginPageLocators.LOGOUT))
 
         logout_btn = self.browser.find_element(*LoginPageLocators.LOGOUT)
@@ -67,7 +67,7 @@ class LoginPage(BasePage):
         assert int(favorites_footer.text) == 0, f"Favorites is not empty, {favorites_footer.text}"
 
     def check_one_product_in_favorites_user_logged(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(LoginPageLocators.FAVORITES_FOOTER))
 
         favorites_header = self.browser.find_element(*LoginPageLocators.FAVORITES_HEADER)
