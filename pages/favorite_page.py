@@ -8,6 +8,9 @@ from pages.locators import FavoritePageLocators
 
 class FavoritePage(BasePage):
     def favorites_is_empty(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(FavoritePageLocators.EMPTY_FAVORITES))
+
         empty_favorites = self.browser.find_element(*FavoritePageLocators.EMPTY_FAVORITES)
         assert empty_favorites.text == 'В избранном пока ничего нет', \
             f"Favorites is not empty, {empty_favorites.text}"
