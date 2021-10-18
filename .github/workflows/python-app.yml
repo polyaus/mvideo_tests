@@ -38,7 +38,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
       run: |
         mkdir ./artifact
-        pytest test_login_page.py
+        pytest
     - name: Upload Test Results
       if: always()
       uses: actions/upload-artifact@v2

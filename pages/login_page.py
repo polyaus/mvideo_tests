@@ -27,7 +27,6 @@ class LoginPage(BasePage):
 
         password = self.browser.find_element(*LoginPageLocators.PASSWORD)
         password.send_keys(os.environ["password"])
-        self.browser.save_screenshot("./artifact/0.png")
 
         enter_btn = self.browser.find_element(*LoginPageLocators.ENTER_BTN)
         enter_btn.click()
@@ -37,8 +36,6 @@ class LoginPage(BasePage):
         user_cabinet.click()
 
     def check_user_is_logged(self):
-        self.browser.save_screenshot("./artifact/1.png")
-
         cabinet_head = self.browser.find_element(*LoginPageLocators.CABINET_HEAD)
         assert cabinet_head.text == "Личный кабинет", f"User is not logged, {cabinet_head.text}"
 
