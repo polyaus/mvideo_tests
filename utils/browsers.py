@@ -12,5 +12,6 @@ def build_browser():
     chrome_options.add_argument('--window-size=1320,1080')
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--proxy-server=81.163.31.105:3128")
 
     return webdriver.Chrome(chrome_options=chrome_options)
