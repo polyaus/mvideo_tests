@@ -27,6 +27,7 @@ class LoginPage(BasePage):
 
         password = self.browser.find_element(*LoginPageLocators.PASSWORD)
         password.send_keys(os.environ["password"])
+        self.browser.save_screenshot("./artifact/0.png")
 
         enter_btn = self.browser.find_element(*LoginPageLocators.ENTER_BTN)
         enter_btn.click()
