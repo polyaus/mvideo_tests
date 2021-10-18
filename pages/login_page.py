@@ -38,9 +38,6 @@ class LoginPage(BasePage):
 
     def check_user_is_logged(self):
         self.browser.save_screenshot("./artifact/1.png")
-        wait = WebDriverWait(self.browser, 5)
-        wait.until(EC.presence_of_element_located(LoginPageLocators.CABINET_HEAD))
-        self.browser.save_screenshot("./artifact/2.png")
 
         cabinet_head = self.browser.find_element(*LoginPageLocators.CABINET_HEAD)
         assert cabinet_head.text == "Личный кабинет", f"User is not logged, {cabinet_head.text}"
