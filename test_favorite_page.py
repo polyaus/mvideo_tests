@@ -1,3 +1,7 @@
+import os
+
+from pyvirtualdisplay import Display
+
 from conftest import LOGIN_PAGE_URL, FAVORITE_PAGE_URL
 from pages.favorite_page import FavoritePage
 from pages.login_page import LoginPage
@@ -9,12 +13,19 @@ from utils.pages import product_page_close_ad
 class TestsWithoutLogin:
     @classmethod
     def setup_class(cls):
+        if os.getenv("in_ci", False):
+            cls.display = Display(visible=0, size=(1920, 1080))
+            cls.display.start()
+
         cls.browser = build_browser()
         product_page_close_ad(cls.browser)
 
     @classmethod
     def teardown_class(cls):
         cls.browser.quit()
+
+        if os.getenv("in_ci", False):
+            cls.display.stop()
 
     def teardown_method(self, method):
         favorite_page = FavoritePage(self.browser, FAVORITE_PAGE_URL)
@@ -108,12 +119,19 @@ class TestsWithoutLogin:
 class TestUserCases:
     @classmethod
     def setup_class(cls):
+        if os.getenv("in_ci", False):
+            cls.display = Display(visible=0, size=(1920, 1080))
+            cls.display.start()
+
         cls.browser = build_browser()
         product_page_close_ad(cls.browser)
 
     @classmethod
     def teardown_class(cls):
         cls.browser.quit()
+
+        if os.getenv("in_ci", False):
+            cls.display.stop()
 
     def teardown_method(self, method):
         login_page = LoginPage(self.browser, LOGIN_PAGE_URL)
