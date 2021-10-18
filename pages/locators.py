@@ -4,11 +4,11 @@ from selenium.webdriver.common.by import By
 class BasePageLocators:
     BODY = (By.CSS_SELECTOR, "body")
     CLOSE_AD = (By.CSS_SELECTOR, ".modal-layout__close")
+    CLOSE_BALANS = (By.CSS_SELECTOR, ".optimize-banner-p13n button")
 
 
 class MainPageLocators(BasePageLocators):
     LOCATION = (By.CSS_SELECTOR, ".location .location-text")
-    # LOCATION_SELECTED = (By.CSS_SELECTOR, "#header-city-selection-link .header-top-line__link-text")
     INPUT_CITY = (By.CSS_SELECTOR, ".location-select__input-wrap input[placeholder=\"Ваш город\"]")
     LIST_CITIES = (By.CSS_SELECTOR, ".location-selection__container .location-select__location")
     FAVORITES_ICON = (By.CSS_SELECTOR, ".header-icon__icon .i-icon-fl-favorite")
@@ -34,7 +34,7 @@ class ProductPageLocators(BasePageLocators):
     FAVORITES_ICON_TOP = (By.CSS_SELECTOR, ".tab-personal .bubble")
     FAVORITE_ICON_ANIMATED = (By.CSS_SELECTOR, ".tab-personal .bubble.animated")
     ACTIVE_BTN_ADD_TO_FAVORITES = (By.CSS_SELECTOR, ".review-share .mv-icon-button--active")
-    EMPTY_FAVORITES = (By.CSS_SELECTOR, ".tab-personal .disabled")
+    EMPTY_FAVORITES = (By.CSS_SELECTOR, ".nav-tab.tab-personal .disabled")
     OPEN_FAV_PRODUCTS = (By.CSS_SELECTOR, ".tab-personal mvid-icon[type='love']")
     EMPTY_WISH_LIST = (By.CSS_SELECTOR, ".header-main__icon_wish.header-icon_disabled")
 

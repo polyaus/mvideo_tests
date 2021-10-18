@@ -9,7 +9,7 @@ from pages.locators import ProductPageLocators
 
 class ProductPage(BasePage):
     def add_product_to_favorites(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(ProductPageLocators.PRODUCT_ADD_TO_FAVORITES))
 
         add_to_favorites = self.browser.find_element(*ProductPageLocators.PRODUCT_ADD_TO_FAVORITES)
@@ -19,7 +19,6 @@ class ProductPage(BasePage):
         body = self.browser.find_element(*ProductPageLocators.BODY)
         action = ActionChains(self.browser)
         action.move_to_element(body).perform()
-        body.click()
 
         try:
             self.browser.find_element(*ProductPageLocators.ACTIVE_BTN_ADD_TO_FAVORITES)
@@ -29,13 +28,13 @@ class ProductPage(BasePage):
             self.add_product_to_favorites()
 
     def favorites_is_empty(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(ProductPageLocators.EMPTY_FAVORITES))
 
         assert self.is_not_element_present(*ProductPageLocators.FAVORITES_ICON_TOP), "Favorites is not empty"
 
     def one_product_in_favorites(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(ProductPageLocators.FAVORITES_ICON_TOP))
 
         favorites_icon_top = self.browser.find_element(*ProductPageLocators.FAVORITES_ICON_TOP)

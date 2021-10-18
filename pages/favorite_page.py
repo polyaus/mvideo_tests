@@ -8,6 +8,9 @@ from pages.locators import FavoritePageLocators
 
 class FavoritePage(BasePage):
     def favorites_is_empty(self):
+        wait = WebDriverWait(self.browser, 5)
+        wait.until(EC.presence_of_element_located(FavoritePageLocators.EMPTY_FAVORITES))
+
         empty_favorites = self.browser.find_element(*FavoritePageLocators.EMPTY_FAVORITES)
         assert empty_favorites.text == 'В избранном пока ничего нет', \
             f"Favorites is not empty, {empty_favorites.text}"
@@ -17,8 +20,8 @@ class FavoritePage(BasePage):
         assert favorites.text == 'Избранное', f"Favorites is empty, {favorites.text}"
 
     def check_one_product_in_favorites(self):
-        wait = WebDriverWait(self.browser, 10)
-        wait.until(EC.presence_of_element_located(FavoritePageLocators.COUNT_IN_FAVORITES))
+        wait = WebDriverWait(self.browser, 5)
+        wait.until(EC.presence_of_element_located(FavoritePageLocators.NAME_PRODUCT))
 
         name_product = self.browser.find_element(*FavoritePageLocators.NAME_PRODUCT)
         assert name_product.text == 'Смартфон Apple iPhone 12 Pro Max 512GB Gold (MGDK3RU/A)', \
@@ -47,7 +50,7 @@ class FavoritePage(BasePage):
             f"Wrong favorite product name, {favorite_products[1].text}"
 
     def delete_one_product_from_favorites(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(FavoritePageLocators.DELETE_FAVORITES_BTN))
 
         delete_favorites_button = self.browser.find_element(*FavoritePageLocators.DELETE_FAVORITES_BTN)
@@ -55,7 +58,7 @@ class FavoritePage(BasePage):
 
     def delete_all_products_from_favorites(self):
         try:
-            wait = WebDriverWait(self.browser, 10)
+            wait = WebDriverWait(self.browser, 5)
             wait.until(EC.presence_of_element_located(FavoritePageLocators.DELETE_FAVORITES_BTN))
         except TimeoutException:
             return
@@ -67,7 +70,7 @@ class FavoritePage(BasePage):
             delete_favorites_buttons[0].click()
 
     def delete_first_added_product_in_favorites(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(FavoritePageLocators.DELETE_FAVORITES_BTN))
 
         product_names = [
@@ -84,7 +87,7 @@ class FavoritePage(BasePage):
         assert favorites[0].text == product_names[0], f"Wrong favorite product name, {favorites[0].text}"
 
     def favorites_is_empty_after_delete_products(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 5)
         wait.until(EC.presence_of_element_located(FavoritePageLocators.EMPTY_FAVORITES_AFTER_DELETE))
 
         empty_favorites = self.browser.find_element(*FavoritePageLocators.EMPTY_FAVORITES_AFTER_DELETE)
