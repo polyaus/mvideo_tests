@@ -36,6 +36,9 @@ class LoginPage(BasePage):
         user_cabinet.click()
 
     def check_user_is_logged(self):
+        wait = WebDriverWait(self.browser, 5)
+        wait.until(EC.presence_of_element_located(LoginPageLocators.CABINET_HEAD))
+
         cabinet_head = self.browser.find_element(*LoginPageLocators.CABINET_HEAD)
         assert cabinet_head.text == "Личный кабинет", f"User is not logged, {cabinet_head.text}"
 
